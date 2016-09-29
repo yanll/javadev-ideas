@@ -1,0 +1,14 @@
+/jcommon/*.iml
+/*.iml
+/javadev-ideas.iml
+/jpweb/*.iml
+/jtest/*.iml
+/lucenedemo/*.iml
+/springbootdemo/*.iml
+/webcollector/*.iml
+/jcommon/target
+/jpweb/target
+/jtest/target
+/lucenedemo/target
+/springbootdemo/target
+/webcollector/target
