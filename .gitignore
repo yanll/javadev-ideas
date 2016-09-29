@@ -12,3 +12,5 @@
 /lucenedemo/target
 /springbootdemo/target
 /webcollector/target
+/study/*.iml
+/study/springbootdemo/target
