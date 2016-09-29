@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmp.common.modules.basedata.dao.BaseDataDao">
+    <select id="selectGoodsTypes" resultType="com.cmp.common.bean.GoodsTypeBean">
+        select * from t_goods_type where enabled = 1 order by idx
+    </select>
+    <select id="selectGoodsBrands" resultType="com.cmp.common.bean.GoodsBrandBean">
+        select * from t_goods_brand where enabled = 1 order by idx
+    </select>
+    <select id="selectGoodsTags" resultType="com.cmp.common.bean.GoodsTagBean">
+        select * from t_goods_tag where enabled = 1 order by idx
+    </select>
+
+
+</mapper>

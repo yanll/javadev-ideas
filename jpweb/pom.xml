@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.yanll</groupId>
+    <artifactId>jpweb</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>jpweb</name>
+    <parent>
+        <artifactId>javadev-ideas</artifactId>
+        <groupId>com.yanll</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>com.yanll</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <jdbc.jdbc_driver_classname>com.mysql.jdbc.Driver</jdbc.jdbc_driver_classname>
+        <jdbc.url>jdbc:mysql://192.168.244.132:3306</jdbc.url>
+        <jdbc.database>jpdb</jdbc.database>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>root</jdbc.password>
+        <uuid.datacenter_id>2</uuid.datacenter_id>
+        <uuid.worker_id>2</uuid.worker_id>
+    </properties>
+
+
+</project>

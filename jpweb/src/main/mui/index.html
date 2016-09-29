@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello MUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="css/mui.min.css">
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="css/app.css"/>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav">
+    <h1 class="mui-title">导航-标题</h1>
+</header>
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" href="#tabbar">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-chat">
+        <span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+        <span class="mui-tab-label">消息</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-contact">
+        <span class="mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">通讯录</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-map">
+        <span class="mui-icon mui-icon-gear"></span>
+        <span class="mui-tab-label">设置</span>
+    </a>
+</nav>
+<div class="mui-content">
+    <div id="tabbar" class="mui-control-content mui-active">
+        <div class="title">11111111111111111111</div>
+    </div>
+    <div id="tabbar-with-chat" class="mui-control-content">
+        <div class="title">22222222222222222222</div>
+    </div>
+    <div id="tabbar-with-contact" class="mui-control-content">
+        <div class="title">3333333333333</div>
+    </div>
+    <div id="tabbar-with-map" class="mui-control-content">
+        <div class="title">444444444444444</div>
+    </div>
+</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+</script>
+</html>
