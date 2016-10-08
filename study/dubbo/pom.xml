@@ -12,6 +12,8 @@
 
     <modules>
         <module>apis</module>
+        <module>businesses</module>
+        <module>deploys</module>
     </modules>
 
 

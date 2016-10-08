@@ -1,5 +1,7 @@
-package com.cmp.study.dubbo.api.web;
+package com.cmp.study.dubbo.api.accountcenter;
 
+import com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class IndexController {
 
+    @Autowired
+    IIndexService indexService;
 
     @RequestMapping(value = "/hello")
-    public String hello() {
-        System.out.println("hello...");
-        return "Hello world!";
+    public String index() {
+        return indexService.hello();
     }
-
 }
