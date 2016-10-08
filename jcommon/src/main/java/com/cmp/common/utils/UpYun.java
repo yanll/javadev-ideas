@@ -104,9 +104,9 @@ public class UpYun {
     }
 
     public UpYun() {
-        this.bucketName = "baophoto";
-        this.userName = "baoops";
-        this.password = md5("wmsqnzt1yjb");
+        this.bucketName = "";
+        this.userName = "";
+        this.password = md5("");
     }
 
 
