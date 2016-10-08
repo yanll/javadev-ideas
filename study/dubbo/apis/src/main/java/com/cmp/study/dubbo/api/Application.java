@@ -1,15 +1,13 @@
-package com.cmp.study.springdemo;
+package com.cmp.study.dubbo.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * Created by breez on 2016/03/30.
  */
 
 @SpringBootApplication
-@EnableConfigurationProperties({MySettings.class})
 public class Application {
 
 
