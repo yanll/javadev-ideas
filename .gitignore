@@ -14,3 +14,6 @@
 /webcollector/target
 /study/*.iml
 /study/springbootdemo/target
+/study/dubbo/apis/target
+/study/dubbo/businesses/target
+/study/dubbo/deploys/target
