@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 @ComponentScan(basePackages = {"com.cmp.study.dubbo.api.accountcenter"})
 public class Application {
 
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
