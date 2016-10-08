@@ -14,7 +14,6 @@
         <module>jtest</module>
         <module>jpweb</module>
         <module>webcollector</module>
-        <module>lucenedemo</module>
         <module>study</module>
     </modules>
 
@@ -44,8 +43,6 @@
             </snapshots>
         </repository>
     </repositories>
-
-
 
 
     <dependencyManagement>
@@ -492,7 +489,6 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
-
 
 
         </plugins>

@@ -10,6 +10,6 @@ public class IndexDaoImpl implements IIndexDao {
     @Override
     public String hello() {
         System.out.println("Hello world dao!");
-        return "Hello world dao!";
+        return "Hello world dao!\n";
     }
 }

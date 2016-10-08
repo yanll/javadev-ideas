@@ -10,12 +10,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>lucenedemo</module>
         <module>springbootdemo</module>
         <module>dubbo</module>
         <module>docker</module>
     </modules>
-
-
 
 
 </project>
