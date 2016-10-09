@@ -16,4 +16,8 @@
 
     <bean id="indexService" class="com.cmp.study.dubbo.businesses.accountcenter.service.IndexServiceImpl"/>
     <dubbo:service interface="com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService" ref="indexService"/>
+
+    <dubbo:annotation package="com.cmp.study.dubbo.businesses"/>
+
+
 </beans>

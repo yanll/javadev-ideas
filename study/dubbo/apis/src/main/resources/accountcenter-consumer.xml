@@ -16,5 +16,7 @@
     <dubbo:reference id="indexService" interface="com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService"
                      timeout="3000"/>
 
+    <dubbo:annotation package="com.cmp.study.dubbo.api" />
+
 
 </beans>
