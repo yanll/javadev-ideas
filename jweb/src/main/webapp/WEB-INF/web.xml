@@ -2,7 +2,7 @@
 <web-app xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4">
-    <display-name>jpweb</display-name>
+    <display-name>jweb</display-name>
     <servlet>
         <servlet-name>spring-mvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

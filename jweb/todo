@@ -1,5 +1,5 @@
 cd D:\env\appengine-java-sdk-1.9.27\bin
-appcfg.cmd -A iambreezes update E:/workspace/projs/jpweb/src/main/webapp
+appcfg.cmd -A iambreezes update E:/workspace/projs/jweb/src/main/webapp
 
 
 序列号：DQGN39RZFH19

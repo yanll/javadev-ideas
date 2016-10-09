@@ -12,8 +12,8 @@
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://192.168.244.132:3306/jpdb?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"
-                        userId="root"
-                        password="root"></jdbcConnection>
+                        userId="root" password="root">
+        </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -22,19 +22,17 @@
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="resources/mappers"
-                         targetProject="src/main">
+        <sqlMapGenerator targetPackage="resources/mappers" targetProject="src/main">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cmp.common.mappers"
-                             targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cmp.common.mappers" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- Tables -->
-        <table tableName="t_goods" domainObjectName="GoodsBean"
-               selectByExampleQueryId="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableCountByExample="false">
+        <table tableName="t_goods" domainObjectName="GoodsBean" selectByExampleQueryId="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableCountByExample="false">
             <property name="useActualColumnNames" value="true"/>
         </table>
         <table tableName="t_goods_detail" domainObjectName="GoodsDetailBean"
