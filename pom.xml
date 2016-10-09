@@ -11,9 +11,9 @@
 
     <modules>
         <module>jcommon</module>
+        <module>jcrawler</module>
+        <module>jweb</module>
         <module>jtest</module>
-        <module>jpweb</module>
-        <module>webcollector</module>
         <module>study</module>
     </modules>
 

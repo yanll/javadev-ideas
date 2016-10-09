@@ -1,0 +1,25 @@
+@import '../public';
+section.service{
+    form{
+        button{
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            line-height: 45px;
+            height: 45px;
+            border-radius: 2px;
+            width: 5.8rem;
+            margin:60px auto;
+            display: block;
+            background-color: $color_logo;
+        }
+        textarea{
+            height: 180px;
+            border:none;
+            background-color: #fff;
+            padding:15px;
+            font-size: 15px;
+            width: 100%;
+        }
+    }
+}

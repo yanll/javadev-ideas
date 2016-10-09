@@ -1,0 +1,59 @@
+@import '../public';
+li.sheet_list_list {
+    padding: 0.3rem;
+    background-color: #fff;
+    overflow: hidden;
+    section.title {
+        height: 30px;
+        a {
+            display: block;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+            margin-right: 10px;
+        }
+        span,
+        i {
+            display: block;
+            height: 100%;
+            line-height: 30px;
+        }
+        span {
+            color: $color_blue;
+        }
+        i {
+            margin-left: 5px;
+            color: $color_content;
+            font-size: 12px;
+        }
+    }
+    a.middle {
+        p {
+            font-size: 15px;
+            @include line_over(3);
+            margin: 10px 0;
+        }
+        div.pics {
+            overflow: hidden;
+            width: 6.4rem;
+            div.lazy {
+                width: 1.9rem;
+                height: 1.9rem;
+                float: left;
+                margin-right: 0.1rem;
+                margin-bottom: 0.1rem;
+            }
+        }
+    }
+    section.bottom {
+        text-align: right;
+        margin-top: 15px;
+        button {
+            display: inline-block;
+            font-size: 12px;
+            color: $color_content;
+            margin-left: 15px;
+        }
+    }
+}

@@ -1,0 +1,288 @@
+@import '../public';
+div.show_sheet {
+    div#hot {
+        background-color: #fffee0;
+        height: 45px;
+        line-height: 45px;
+        padding: 0 12px;
+        overflow: hidden;
+        i {
+            display: block;
+            margin-right: 10px;
+            position: relative;
+            width: 20px;
+            height: 25px;
+            background: $color_logo;
+            margin-top: 10px;
+            overflow: hidden;
+            border-radius: 2px;
+            &:after {
+                content: '';
+                display: block;
+                top: -9px;
+                box-sizing: border-box;
+                position: absolute;
+                width: 100%;
+                height: 18px;
+                overflow: hidden;
+                background-color: #fcef20;
+                border-radius: 8px;
+                border: 1px solid #fffee0;
+            }
+        }
+    }
+}
+li.no_sheet {
+    overflow: hidden;
+    section.title {
+        padding: 15px;
+        border-bottom: 1px solid $color_border;
+        div.lazy {
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        div.right {
+            overflow: hidden;
+            p {
+                @include line_over(2);
+                height: 38px;
+                font-size: 15px;
+                overflow: hidden;
+            }
+            span {
+                display: block;
+                color: $color_content;
+                font-size: 12px;
+                margin-top: 12px;
+            }
+        }
+    }
+    section.bottom {
+        padding: 10px;
+        text-align: right;
+        a {
+            display: inline-block;
+            padding: 5px 8px;
+            font-size: 12px;
+            border-radius: 2px;
+            background-color: $color_logo;
+            color: #fff;
+        }
+    }
+}
+li.hav_sheet {
+    overflow: hidden;
+    a {
+        overflow: hidden;
+        position: relative;
+        padding: 0.3rem;
+        display: block;
+    }
+    section.title {
+        height: 30px;
+        margin-bottom: 15px;
+        div.lazy {
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+            border-radius: 50%;
+            -webkit-transform: rotateZ(0);
+        }
+        span,
+        i {
+            line-height: 30px;
+            height: 100%;
+        }
+        span {
+            margin: 0 15px;
+            color: $color_blue;
+            font-size: 15px;
+        }
+        i {
+            display: block;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+    }
+    section.content {
+        p {
+            font-size: 14px;
+            @include line_over(3);
+            margin-bottom: 15px;
+        }
+        div.pics {
+            width: 6.4rem;
+            margin-left: -0.3rem;
+            overflow: hidden;
+            padding-left: 0.21rem;
+            div.lazy {
+                width: 1.9rem;
+                height: 1.9rem;
+                float: left;
+                margin: 0 0.05rem;
+            }
+        }
+    }
+}
+section.sheet_info {
+    section.user {
+        padding: 15px;
+        border-bottom: 1px solid $color_border;
+        div.lazy {
+            width: 30px;
+            height: 30px;
+            -webkit-transform: rotateZ(0);
+            border-radius: 50%;
+        }
+        span,
+        i {
+            height: 30px;
+            line-height: 30px;
+        }
+        span {
+            padding: 0 10px;
+            font-size: 15px;
+        }
+        i {
+            color: $color_content1;
+            display: block;
+            font-size: 12px;
+        }
+    }
+    section.font_info {
+        font-size: 12px;
+        overflow: hidden;
+        padding: 15px;
+        p {
+            font-size: 14px;
+            color: $color_blue;
+            margin-bottom: 6px;
+        }
+        .test {
+            display: block;
+            margin-left: 10px;
+            color: $color_logo;
+        }
+        span {
+            display: block;
+            color: $color_content1;
+            margin-bottom: 4px;
+            @extend .ellipsis;
+            i {
+                color: $color_logo;
+            }
+        }
+        em {
+            background-color: $color_logo;
+            border-radius: 2px;
+            padding: 12px;
+            display: block;
+            width: 100%;
+            color: #fff;
+            margin-top: 8px;
+        }
+    }
+    section.font_pic {
+        padding: 15px;
+        p {
+            font-size: 14px;
+            @include line_over(3);
+            margin-bottom: 15px;
+        }
+        div.lazy {
+            height: 3rem;
+            margin-bottom: 5px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+section.sheet_need {
+    padding-bottom: 60px;
+    background-color: #fff;
+    section.pic_title {
+        div.lazy {
+            width: 100%;
+            height: 2.13rem;
+            overflow: hidden;
+        }
+    }
+    a.start_sheet {
+        position: fixed;
+        z-index: 30;
+        background-color: $color_logo;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        bottom: 0;
+        left: 0;
+    }
+    dl.fonts {
+        h3 {
+            padding: 15px;
+            font-size: 14px;
+        }
+        dt {
+            padding: 0 15px;
+            margin-top: 14px;
+            margin-bottom: 9px;
+            @extend .box;
+            span {
+                @extend .flex1;
+                @extend .ellipsis;
+                font-size: 16px;
+            }
+            &:before {
+                content: '';
+                width: 20px;
+                height: 20px;
+                display: block;
+                background: url("../../img/1@3x.png") no-repeat center center;
+                background-size: 100% 100%;
+                margin-right: 10px;
+            }
+            &:nth-of-type(2) {
+                &:before {
+                    background-image: url("../../img/2@3x.png");
+                }
+            }
+            &:nth-of-type(3) {
+                &:before {
+                    background-image: url("../../img/3@3x.png");
+                }
+            }
+        }
+        dd {
+            padding: 0 15px;
+            font-size: 14px;
+            padding-left: 40px;
+        }
+    }
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmp.jp.api.goods.dao.GoodsDao">
+    <select id="selectGoods" resultType="com.cmp.jp.api.goods.vo.GoodsVO">
+        select * from t_goods where status = 1
+    </select>
+    <select id="selectGoodsTypes" resultType="com.cmp.common.bean.GoodsTypeBean">
+        select * from t_goods_type where enabled = 1
+    </select>
+</mapper>

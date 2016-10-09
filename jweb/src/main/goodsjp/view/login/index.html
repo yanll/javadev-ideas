@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<script src="../../js/change_view.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			change.action(640);
+		</script>
+		<meta name="apple-mobile-web-app-title" content="codewa">
+		<!--网页描述/s-->
+		<meta name="description" content="">
+		<!--网页描述/e-->
+		<!--网页关键词/s-->
+		<meta name="Keywords" content="">
+		<!--网页关键词/e-->
+		<meta name="apple-mobile-web-app-title" content="codewa">
+		<link rel="stylesheet" type="text/css" href="../../css/normal.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/login/logins.css" />
+		<link rel="apple-touch-icon-precomposed" href="http://7xkwkh.com1.z0.glb.clouddn.com/ios.png" />
+		<link rel="shortcut icon" href="http://7xkwkh.com1.z0.glb.clouddn.com/jingbao.ico" />
+		<title>登录</title>
+	</head>
+
+	<body class="login">
+		<div id="content">
+			<form action="" class="login_form">
+				<div class="input box">
+					<i class="icon icon-phone"></i>
+					<input type="tel" name="user" id="user" value="" class="flex1" placeholder="请输入手机号" autocomplete="off" />
+				</div>
+				<div class="input box">
+					<i class="icon icon-pwd"></i>
+					<input type="password" name="pwd" id="pwd" value="" class="flex1" placeholder="请输入密码" autocomplete="off" />
+					<a href="replace.html" class="need_back_url">忘记密码？</a>
+				</div>
+				<section class="footer">
+					<button class="btns">登录</button>
+					<a href="register.html" class="btns need_back_url">注册</a>
+				</section>
+			</form>
+			<section class="login_else" style="display: none;">
+				<h3>
+					<span>或从以下方式登录</span>
+				</h3>
+				<div>
+					<a href="">
+						<i class="icon icon-weixin"></i>
+						<span>微信</span>
+					</a>
+					<a href="">
+						<i class="icon icon-qq"></i>
+						<span>QQ</span>
+					</a>
+					<a href="">
+						<i class="icon icon-weibo"></i>
+						<span>新浪微博</span>
+					</a>
+				</div>
+			</section>
+		</div>
+		<script src="../../js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jQuery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/m_layz_load.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/store.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.addEventListener('load', function() {
+				FastClick.attach(document.body);
+			}, false);
+			$(function() {
+				my.login=1;
+				my.body_loading();
+				my.public('../public/', 5);
+				var $user = $('#user');
+				var $pwd = $('#pwd');
+				$('.login_form').submit(function(e) {
+					e.preventDefault();
+					var go_json = {
+						login_type: 0,
+						phone: $.trim($user.val()),
+						passwd: $pwd.val()
+					}
+					if (go_json.phone == '') {
+						notie.alert(3, '账号不能为空', 2);
+					} else if (go_json.passwd == '') {
+						notie.alert(3, '密码不能为空', 2);
+					} else if (!my.email.test(go_json.phone) && !my.tel_test.test(go_json.phone)) {
+						notie.alert(3, '账号格式不正确', 2);
+					} else {
+						my.show_loading();
+						$.post(my.api + '/api/0100/customer/login.do', go_json, function(data) {
+							my.hide_loading();
+							console.log(data)
+							if (data.code == 1000) {
+//								console.log(data);
+//								return false;
+								store.set('customer_id', data.data.customer_ids);
+								store.set('app_token',data.data.app_token);
+								my.tips('correct', '登录成功', function() {
+//									return;
+									if (my.url_attr('backurl')) {
+										location.href = my.url_attr('backurl');
+									} else {
+										location.href = '../index/index.html'
+									}
+								})
+							} else {
+								my.tips('wrong', data.desc);
+							}
+						});
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

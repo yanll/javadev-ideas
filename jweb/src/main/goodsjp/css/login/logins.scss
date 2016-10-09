@@ -1,0 +1,128 @@
+@import '../public';
+body {
+    background-color: #fff!important;
+}
+body.login {
+    form {
+        display: block;
+        overflow: hidden;
+        div.input {
+            border-bottom: 1px solid $color_border;
+            height: 45px;
+            line-height: 45px;
+            padding: 0 10px;
+            font-size: 15px;
+            i.icon {
+                display: block;
+                color: #B3B3B3;
+                font-size: 24px;
+                height: 100%;
+            }
+            a {
+                display: block;
+                height: 100%;
+                color: $color_content;
+                margin-left: 5px;
+            }
+            span.has_code{
+                background-color: $color_logo;
+                display: block;
+                height: 100%;
+                padding:0 10px;
+                margin-right:-10px;
+                color: #fff;
+                width: 100px;
+                text-align: center;
+                margin-left:2px;
+            }
+            span.on{
+                background-color: #B3B3B3;
+            }
+        }
+        section.footer {
+            padding: 10px;
+            .btns {
+                display: block;
+                width: 100%;
+                font-size: 15px;
+                color: #fff;
+                text-align: center;
+                line-height: 40px;
+                border-radius: 2px;
+                height: 40px;
+                background-color: $color_logo;
+                margin: 5px 0;
+                overflow: hidden;
+            }
+            a.btns {
+                background-color: #f2f2f2;
+                color:  $color_content;
+                border: 1px solid #ccc;
+               
+            }
+        }
+    }
+    section.login_else {
+        margin-top: 20px;
+        font-size: 12px;
+        color: $color_content;
+        padding: 0 10px;
+        h3 {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            span {
+                display: inline-block;
+                padding: 0 14px;
+                background-color: #fff;
+                position: relative;
+                z-index: 3;
+            }
+            &:before {
+                content: '';
+                width: 100%;
+                height: 1px;
+                position: absolute;
+                background-color: #ccc;
+                top: 50%;
+                left: 0;
+                display: block;
+            }
+        }
+        div {
+            text-align: center;
+            font-size: 0;
+            padding: 12px 0;
+            a {
+                display: inline-block;
+                margin: 0 20px;
+                text-align: center;
+                font-size: 12px;
+                span {
+                    color: $color_content;
+                    display: block;
+                    text-align: center;
+                    margin: 8px 0;
+                }
+                i {
+                    border-radius: 50%;
+                    border: 1px solid #61e5b8;
+                    display: inline-block;
+                    width: 50px;
+                    height: 50px;
+                    color: #61e5b8;
+                    font-size: 28px;
+                    line-height: 50px;
+                }
+                &:nth-of-type(2) i {
+                    color: #9c84cb;
+                    border-color: #9c84cb;
+                }
+                &:nth-of-type(3) i {
+                    color: #f19291;
+                    border-color: #f19291;
+                }
+            }
+        }
+    }
+}
