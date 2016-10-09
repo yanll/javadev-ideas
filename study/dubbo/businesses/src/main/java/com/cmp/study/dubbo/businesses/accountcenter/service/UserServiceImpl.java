@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
  * Created by YANLL on 2016/10/08.
  */
 @Service
-@com.alibaba.dubbo.config.annotation.Service(version = "1.0.0")
+@com.alibaba.dubbo.config.annotation.Service
 public class UserServiceImpl implements IUserService {
 
     @Override

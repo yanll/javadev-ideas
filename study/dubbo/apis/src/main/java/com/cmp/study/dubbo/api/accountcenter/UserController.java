@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class UserController {
 
-    @Reference(version = "1.0.0")
+    @Reference
     IUserService userService;
 
     @RequestMapping(value = "/save")
