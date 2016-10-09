@@ -1,6 +1,6 @@
 package com.cmp.test.jackson;
 
-import com.cmp.common.utils.UtilJackson;
+import com.cmp.common.json.UtilJackson;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -103,15 +103,15 @@ public class Main {
 //        }
 
 
-        Map<String,Object> map = new HashMap<>();
-        map.put("1",1);
-        map.put("2","sss");
-        map.put("3",new Date());
+        Map<String, Object> map = new HashMap<>();
+        map.put("1", 1);
+        map.put("2", "sss");
+        map.put("3", new Date());
 
         String s = UtilJackson.toJSON(map);
-            //System.out.println(s);
+        //System.out.println(s);
         Map pp = UtilJackson.fromJSON(s, Map.class);
-            //System.out.println(pp);
+        //System.out.println(pp);
 
     }
 

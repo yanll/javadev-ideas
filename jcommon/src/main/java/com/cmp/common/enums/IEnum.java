@@ -1,5 +1,6 @@
 package com.cmp.common.enums;
 
+import com.cmp.common.json.UtilJackson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 public interface IEnum {
 
     class Util {
+
 
         private static final Log logger = LogFactory.getLog(Util.class);
 
@@ -73,6 +75,10 @@ public interface IEnum {
             return this.value;
         }
 
+        public String getDesc() {
+            return desc;
+        }
+
         public static IndexDefinition getInstance(Long value) {
             IndexDefinition instance = null;
             for (IndexDefinition v : IndexDefinition.values()) {
@@ -104,5 +110,14 @@ public interface IEnum {
 
     }
 
+    public static void main(String[] args) {
+        Map<Integer, String> map = IEnum.Util.toMap(IEnum.YESNO.class);
+        System.out.println(UtilJackson.toJSON(map));
+
+        System.out.println(IEnum.Util.exists(100L, IEnum.IndexDefinition.class));
+
+    }
 
 }
+
+

@@ -40,4 +40,8 @@ public class Consts {
         ERR_CODE.put(1000, "操作成功！");
     }
 
+
+    public static void main(String[] args) {
+
+    }
 }

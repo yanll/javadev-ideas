@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class UpYun {
+public class UPYun {
 
     /**
      * 默认的编码格式
@@ -90,20 +90,20 @@ public class UpYun {
     protected String fileDate = null;
 
     /**
-     * 初始化 UpYun 存储接口
+     * 初始化 UPYun 存储接口
      *
      * @param bucketName 空间名称
      * @param userName   操作员名称
      * @param password   密码，不需要MD5加密
-     * @return UpYun object
+     * @return UPYun object
      */
-    public UpYun(String bucketName, String userName, String password) {
+    public UPYun(String bucketName, String userName, String password) {
         this.bucketName = bucketName;
         this.userName = userName;
         this.password = md5(password);
     }
 
-    public UpYun() {
+    public UPYun() {
         this.bucketName = "";
         this.userName = "";
         this.password = md5("");
@@ -114,10 +114,10 @@ public class UpYun {
      * 切换 API 接口的域名接入点
      * <p>
      * 可选参数：<br>
-     * 1) UpYun.ED_AUTO(v0.api.upyun.com)：默认，根据网络条件自动选择接入点 <br>
-     * 2) UpYun.ED_TELECOM(v1.api.upyun.com)：电信接入点<br>
-     * 3) UpYun.ED_CNC(v2.api.upyun.com)：联通网通接入点<br>
-     * 4) UpYun.ED_CTT(v3.api.upyun.com)：移动铁通接入点
+     * 1) UPYun.ED_AUTO(v0.api.upyun.com)：默认，根据网络条件自动选择接入点 <br>
+     * 2) UPYun.ED_TELECOM(v1.api.upyun.com)：电信接入点<br>
+     * 3) UPYun.ED_CNC(v2.api.upyun.com)：联通网通接入点<br>
+     * 4) UPYun.ED_CTT(v3.api.upyun.com)：移动铁通接入点
      *
      * @param domain 域名接入点
      */
@@ -835,7 +835,7 @@ public class UpYun {
     private String sign(HttpURLConnection conn, String uri, long length) {
         String sign = conn.getRequestMethod() + "&" + uri + "&"
                 + conn.getRequestProperty(DATE) + "&" + length + "&" + password;
-        return "UpYun " + userName + ":" + md5(sign);
+        return "UPYun " + userName + ":" + md5(sign);
     }
 
     /**
@@ -1320,7 +1320,7 @@ public class UpYun {
 
 
     public static void main(String[] args) {
-        UpYun upYun = new UpYun();
+        UPYun upYun = new UPYun();
         try {
             upYun.writeFile("/public/icon/pay/unionpay3x.png", new File("D://unionpay3x.png"));
         } catch (Exception e) {

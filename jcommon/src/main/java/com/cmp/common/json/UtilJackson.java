@@ -6,10 +6,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.dataformat.xml.XmlFactory;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +22,11 @@ import java.util.Map;
  * YAN on 2015/09/30.
  */
 public class UtilJackson {
-
     private static final Log logger = LogFactory.getLog(UtilJackson.class);
     public static final ObjectMapper mapper = new ObjectMapper();
     public static final JsonFactory factory = mapper.getFactory();
+    public static final XmlMapper xml_mapper = new XmlMapper();
+    public static final XmlFactory xml_factory = xml_mapper.getFactory();
 
     static {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
@@ -107,6 +111,33 @@ public class UtilJackson {
             return mapper.readTree(content);
         } catch (IOException e) {
             logger.error(String.format("JSON反序列化异常：【%s】", content), e);
+        }
+        return null;
+    }
+
+    public static JsonNode readTree(InputStream is) {
+        try {
+            return mapper.readTree(is);
+        } catch (IOException e) {
+            logger.error(String.format("JSON反序列化异常：【%s】", "InputStream"), e);
+        }
+        return null;
+    }
+
+    public static JsonNode readXmlTree(String content) {
+        try {
+            return xml_mapper.readTree(content);
+        } catch (IOException e) {
+            logger.error(String.format("JSON反序列化异常：【%s】", content), e);
+        }
+        return null;
+    }
+
+    public static JsonNode readXmlTree(InputStream is) {
+        try {
+            return xml_mapper.readTree(is);
+        } catch (IOException e) {
+            logger.error(String.format("JSON反序列化异常：【%s】", "InputStream"), e);
         }
         return null;
     }
@@ -222,5 +253,6 @@ public class UtilJackson {
             return null;
         }
     }
+
 
 }
