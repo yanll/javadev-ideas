@@ -1,4 +1,4 @@
-package com.cmp.test.annotation.b;
+package com.cmp.test.sdk.annotation.b;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

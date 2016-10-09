@@ -1,4 +1,4 @@
-package com.cmp.test.annotation.a;
+package com.cmp.test.sdk.annotation.a;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 /**
  * Created by YAN on 2015/08/15.
  */
-@Target(ElementType.FIELD)
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IgnoreProperty {
+public @interface VOTable {
+    String value() default "";
 }

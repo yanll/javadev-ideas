@@ -1,4 +1,4 @@
-package com.cmp.test.annotation.a;
+package com.cmp.test.sdk.annotation.a;
 
 import javax.annotation.Resource;
 import java.lang.annotation.Annotation;

@@ -1,4 +1,4 @@
-package com.cmp.test.tools;
+package com.cmp.common.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
