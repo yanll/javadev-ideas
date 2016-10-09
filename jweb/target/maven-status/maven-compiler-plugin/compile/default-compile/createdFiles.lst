@@ -1,6 +1,0 @@
-com\cmp\jp\api\goods\service\IGoodsService.class
-com\cmp\jp\api\goods\vo\GoodsVO.class
-com\cmp\jp\api\indexdata\controller\IndexDataController.class
-com\cmp\jp\api\goods\controller\GoodsController.class
-com\cmp\jp\api\goods\dao\GoodsDao.class
-com\cmp\jp\api\goods\service\GoodsServiceImpl.class
