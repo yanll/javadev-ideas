@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 应用名称 -->
+    <dubbo:application name="accountcenter-provider"/>
+
+    <dubbo:registry address="zookeeper://192.168.244.132:2181?backup=192.168.244.132:2182,192.168.244.132:2183"/>
+
+    <!-- 每个应用分配一个自己的port -->
+    <dubbo:protocol name="dubbo" port="20882"/>
+
+    <bean id="indexService" class="com.cmp.study.dubbo.businesses.accountcenter.service.impl.IndexServiceImpl"/>
+    <dubbo:service interface="com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService" ref="indexService"/>
+
+    <dubbo:annotation package="com.cmp.study.dubbo.businesses.accountcenter"/>
+
+
+</beans>
