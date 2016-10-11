@@ -1,5 +1,6 @@
-package com.cmp.study.dubbo.businesses.accountcenter.dao;
+package com.cmp.study.dubbo.businesses.accountcenter.dao.impl;
 
+import com.cmp.study.dubbo.businesses.accountcenter.dao.IIndexDao;
 import org.springframework.stereotype.Repository;
 
 /**

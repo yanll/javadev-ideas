@@ -1,5 +1,6 @@
-package com.cmp.study.dubbo.businesses.accountcenter.service;
+package com.cmp.study.dubbo.businesses.accountcenter.service.impl;
 
+import com.cmp.study.dubbo.businesses.accountcenter.service.IUserService;
 import org.springframework.stereotype.Service;
 
 /**
