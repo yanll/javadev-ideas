@@ -7,7 +7,6 @@
     <artifactId>jtest</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>jtest</name>
     <parent>
         <artifactId>javadev-ideas</artifactId>
         <groupId>com.yanll</groupId>
