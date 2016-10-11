@@ -25,3 +25,11 @@
 /study/dubbo/businesses/accountcenter-service/accountcenter-service.iml
 /study/dubbo/businesses/accountcenter-service-impl/accountcenter-service-impl.iml
 /study/dubbo/businesses/businesses.iml
+/study/dubbo/businesses/accountcenter-service/target
+/study/dubbo/businesses/accountcenter-service-impl/target
+/study/dubbo/apis/apis.iml
+/study/dubbo/apis/accountcenter-api/target
+/study/dubbo/apis/accountcenter-api/accountcenter-api.iml
+/study/dubbo/deploys/deploys.iml
+/study/dubbo/deploys/accountcenter-deploy/accountcenter-deploy.iml
+/study/dubbo/deploys/accountcenter-deploy/target
