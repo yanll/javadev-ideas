@@ -19,8 +19,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.yanll.study.dubbo</groupId>
-            <artifactId>businesses</artifactId>
+            <groupId>com.yanll.study.dubbo.businesses</groupId>
+            <artifactId>accountcenter-service-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

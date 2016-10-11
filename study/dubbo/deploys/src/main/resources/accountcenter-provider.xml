@@ -14,7 +14,7 @@
     <!-- 每个应用分配一个自己的port -->
     <dubbo:protocol name="dubbo" port="20882"/>
 
-    <bean id="indexService" class="com.cmp.study.dubbo.businesses.accountcenter.service.IndexServiceImpl"/>
+    <bean id="indexService" class="com.cmp.study.dubbo.businesses.accountcenter.service.impl.IndexServiceImpl"/>
     <dubbo:service interface="com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService" ref="indexService"/>
 
     <dubbo:annotation package="com.cmp.study.dubbo.businesses"/>
