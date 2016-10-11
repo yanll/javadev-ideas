@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping(value = "/account/index")
+@RequestMapping(value = "/accountcenter/index")
 @EnableAutoConfiguration
 public class IndexController {
 

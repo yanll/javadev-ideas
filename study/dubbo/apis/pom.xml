@@ -6,6 +6,7 @@
     <groupId>com.yanll.study.dubbo</groupId>
     <artifactId>apis</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
 
     <parent>
@@ -15,24 +16,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-
-    <dependencies>
-        <dependency>
-            <groupId>com.yanll.study.dubbo.businesses</groupId>
-            <artifactId>accountcenter-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-    <packaging>jar</packaging>
-    <name>apis</name>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>accountcenter-api</module>
+    </modules>
 
 </project>

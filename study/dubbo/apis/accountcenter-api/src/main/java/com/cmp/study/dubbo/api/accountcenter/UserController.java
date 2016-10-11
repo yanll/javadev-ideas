@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping(value = "/account/user")
+@RequestMapping(value = "/accountcenter/user")
 @EnableAutoConfiguration
 public class UserController {
 
