@@ -14,9 +14,11 @@ public class ZooKeeperClient {
 
 
     public static void main(String[] args) {
+        String node_path = "/user";
+
         //zk集群的地址
-        /*String ZKServers = "192.168.244.132:2181,192.168.244.132:2182,192.168.244.132:2183";*/
-        String ZKServers = "192.168.244.132:21818";//docker
+        String ZKServers = "192.168.244.132:2181,192.168.244.132:2182,192.168.244.132:2183";
+        /*String ZKServers = "192.168.244.132:21818";//docker*/
         /**
          * 创建会话
          * new SerializableSerializer() 创建序列化器接口，用来序列化和反序列化
@@ -26,23 +28,26 @@ public class ZooKeeperClient {
 
         User user = new User();
         user.setId(1000);
-        user.setName("testUser");
+        user.setName("Admin");
         /**
          * "/testUserNode" :节点的地址
          * user：数据的对象
          * CreateMode.PERSISTENT：创建的节点类型
          */
 
-        String path = zkClient.create("/testUserNode", user, CreateMode.PERSISTENT);
+        boolean e = zkClient.exists(node_path);
+        if (e) {
+            zkClient.delete(node_path);
+        }
+        String path = zkClient.create(node_path, user, CreateMode.PERSISTENT);
         System.out.println("created path:" + path);
 
-        boolean e = zkClient.exists("/testUserNode");
         //返回 true表示节点存在 ，false表示不存在
         System.out.println(e);
 
         Stat stat = new Stat();
         //获取 节点中的对象
-        User u = zkClient.readData("/testUserNode", stat);
+        User u = zkClient.readData(node_path, stat);
         System.out.println(u.getName());
         System.out.println(stat);
     }
