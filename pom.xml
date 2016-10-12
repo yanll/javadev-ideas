@@ -6,7 +6,6 @@
     <artifactId>javadev-ideas</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>javadev-ideas</name>
 
 
     <modules>
@@ -23,7 +22,6 @@
         <jdk.version>1.8</jdk.version>
         <deploy.version>${project.version}</deploy.version>
         <finalName>${project.artifactId}-${project.version}</finalName>
-
 
         <spring.version>4.3.2.RELEASE</spring.version>
     </properties>

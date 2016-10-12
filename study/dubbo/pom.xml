@@ -109,16 +109,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <testResources>
-            <testResource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </testResource>
-            <testResource>
-                <directory>src/main/webapp</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>
 
         <pluginManagement>
             <plugins>
