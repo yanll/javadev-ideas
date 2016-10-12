@@ -1,0 +1,1 @@
+java -jar ../accountcenter-deploy-1.0-SNAPSHOT.jar

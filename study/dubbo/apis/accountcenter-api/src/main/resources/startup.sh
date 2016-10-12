@@ -1,0 +1,1 @@
+java -jar ../accountcenter-api-1.0-SNAPSHOT.jar
