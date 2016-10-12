@@ -39,11 +39,13 @@ public class ZooKeeperClient {
         if (e) {
             zkClient.delete(node_path);
         }
-        String path = zkClient.create(node_path, user, CreateMode.PERSISTENT);
-        System.out.println("created path:" + path);
 
         //返回 true表示节点存在 ，false表示不存在
         System.out.println(e);
+
+        String path = zkClient.create(node_path, user, CreateMode.PERSISTENT);
+        System.out.println("created path:" + path);
+
 
         Stat stat = new Stat();
         //获取 节点中的对象
