@@ -104,7 +104,21 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+                <directory>target/resources</directory>
+                <filtering>true</filtering>
+            </resource>
         </resources>
+        <testResources>
+            <testResource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/main/webapp</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
 
         <pluginManagement>
             <plugins>
@@ -121,8 +135,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <showWarnings>true</showWarnings>
+                    <optimize>true</optimize>
                 </configuration>
             </plugin>
         </plugins>

@@ -7,9 +7,9 @@
     </appender>
 
     <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/data/log/accountcenter-api-info.log</File>
+        <File>/data/log/${artifactId}-api-info.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>/data/log/accountcenter-api-info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>/data/log/${artifactId}-info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <MaxFileSize>500MB</MaxFileSize>
@@ -24,9 +24,9 @@
     </appender>
 
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/data/log/accountcenter-api-error.log</File>
+        <File>/data/log/${artifactId}-error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>/data/log/accountcenter-api-error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>/data/log/${artifactId}-error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <MaxFileSize>500MB</MaxFileSize>

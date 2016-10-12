@@ -489,8 +489,6 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
-
-
         </plugins>
         <pluginManagement>
             <plugins>
