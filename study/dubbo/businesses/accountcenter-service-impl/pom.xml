@@ -13,6 +13,7 @@
         <groupId>com.yanll.study.dubbo</groupId>
         <artifactId>businesses</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <dependencies>
