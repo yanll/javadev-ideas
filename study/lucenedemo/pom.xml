@@ -131,11 +131,6 @@
     </dependencies>
 
 
-    <build>
-        <finalName>lucenedemo</finalName>
-    </build>
-
-
     <properties>
         <version.lucene>6.0.0</version.lucene>
     </properties>
