@@ -12,11 +12,11 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @ImportResource(locations = "classpath:accountcenter-api-consumer.xml")
 @ComponentScan(basePackages = {"com.cmp.study.dubbo.api.accountcenter"})
-public class Application {
+public class AccountCenterApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(AccountCenterApplication.class, args);
     }
 }
 

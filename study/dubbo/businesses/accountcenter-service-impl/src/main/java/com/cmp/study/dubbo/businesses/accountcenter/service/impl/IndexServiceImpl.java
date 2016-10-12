@@ -3,6 +3,8 @@ package com.cmp.study.dubbo.businesses.accountcenter.service.impl;
 
 import com.cmp.study.dubbo.businesses.accountcenter.dao.IIndexDao;
 import com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class IndexServiceImpl implements IIndexService {
 
+    private static final Log logger = LogFactory.getLog(IndexServiceImpl.class);
+
     @Autowired
     IIndexDao indexDao;
 
     @Override
     public String hello() {
-        System.out.println("Hello world service!");
+        logger.info("Hello world service!");
+        "".substring(0, 100);
         return indexDao.hello();
     }
 }

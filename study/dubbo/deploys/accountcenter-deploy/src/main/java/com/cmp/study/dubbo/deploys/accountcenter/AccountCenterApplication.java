@@ -13,13 +13,13 @@ import org.springframework.context.annotation.ImportResource;
 @EnableAutoConfiguration
 @ImportResource(locations = "classpath:accountcenter-provider.xml")
 @ComponentScan(basePackages = "com.cmp.study.dubbo.businesses.accountcenter")
-public class IndexApplication {
-    private static final Log logger = LogFactory.getLog(IndexApplication.class);
+public class AccountCenterApplication {
+    private static final Log logger = LogFactory.getLog(AccountCenterApplication.class);
 
     public static void main(String[] args) {
         try {
-            new SpringApplicationBuilder(IndexApplication.class).web(false).run(args);
-            logger.info("服务启动成功");
+            new SpringApplicationBuilder(AccountCenterApplication.class).web(false).run(args);
+            logger.info("AccountCenterApplication服务启动成功。");
             Object lock = new Object();
             synchronized (lock) {
                 try {
@@ -29,7 +29,7 @@ public class IndexApplication {
                 }
             }
         } catch (Exception ex) {
-            logger.error("服务启动失败", ex);
+            logger.error("AccountCenterApplication服务启动失败。", ex);
         }
     }
 }
