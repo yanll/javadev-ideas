@@ -4,7 +4,7 @@
          xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4">
     <display-name>activitidemo</display-name>
     <servlet>
-        <servlet-name>spring-mvc</servlet-name>
+        <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -17,7 +17,7 @@
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>spring-mvc</servlet-name>
+        <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <context-param>

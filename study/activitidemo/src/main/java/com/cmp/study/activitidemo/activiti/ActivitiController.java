@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/activiti_process")
 public class ActivitiController {
+
     @Autowired
     ProcessEngine processEngine;
 
