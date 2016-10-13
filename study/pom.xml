@@ -13,6 +13,7 @@
         <module>lucenedemo</module>
         <module>springbootdemo</module>
         <module>hadoopdemo</module>
+        <module>activitidemo</module>
         <module>dubbo</module>
         <module>docker</module>
     </modules>
