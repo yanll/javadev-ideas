@@ -23,3 +23,14 @@ Spark：擅长文件MapReduce，文件存储次之。
 TFS：阿里开源图片服务器，用于处理图片等小文件（2M以内）。文档地址：http://code.taobao.org/p/tfs/wiki/index/
 FastDFS：http://code.google.com/p/fastdfs/
 MogileFS：http://www.yupoo.com/
+
+
+
+工作流：
+JBPM:重量级
+Activiti:重量级
+Snaker:已停止更新
+JFlow:GPL协议
+JFlower:
+OpenWebFlow:基于Activiti
+Spring Workflow:基于Activiti
