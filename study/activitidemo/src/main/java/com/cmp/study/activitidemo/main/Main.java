@@ -15,7 +15,7 @@ public class Main {
         ProcessEngineConfiguration configuration = ProcessEngineConfiguration.createStandaloneProcessEngineConfiguration();
         // 2.设置数据库连接信息
         // 设置数据库地址
-        configuration.setJdbcUrl("jdbc:mysql://192.168.244.132:3306/jpdb?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&failOverReadOnly=false");
+        configuration.setJdbcUrl("jdbc:mysql://localhost:3306/data_ty?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&failOverReadOnly=false");
         // 数据库驱动
         configuration.setJdbcDriver("com.mysql.jdbc.Driver");
         // 用户名
