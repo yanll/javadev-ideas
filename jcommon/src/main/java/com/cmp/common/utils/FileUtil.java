@@ -1,5 +1,8 @@
 package com.cmp.common.utils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,10 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class FileUtil {
+
+    private static final Log logger = LogFactory.getLog(FileUtil.class);
+
+
     public static void copyFile(String src, String dest) throws IOException {
         FileInputStream in = new FileInputStream(src);
         inputStreamToFile(in, dest);
@@ -52,6 +59,17 @@ public class FileUtil {
          */
     }
 
+    public static String bytesToStirng(byte[] bytes) {
+        try {
+            return new String(bytes, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            logger.error("bytesToStirng error.", ex);
+        } catch (IOException ex) {
+            logger.error("bytesToStirng error.", ex);
+        }
+        return null;
+    }
+
 
     public static void log(String file_name, String content) {
         try {
@@ -60,7 +78,7 @@ public class FileUtil {
             writer.write(content);
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("log error,", e);
         }
     }
 
