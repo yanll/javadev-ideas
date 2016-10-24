@@ -16,6 +16,7 @@
         <module>activitidemo</module>
         <module>dubbo</module>
         <module>docker</module>
+        <module>springcloud</module>
     </modules>
 
 
