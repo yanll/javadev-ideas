@@ -1,9 +1,11 @@
 package com.cmp.common.json;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.xml.XmlFactory;
@@ -18,17 +20,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 默认的Jackson处理类 Jackson官方推荐使用缓存的JsonFactory、ObjectMapper 流式API性能更优 Created by
+ * 升级jackson 1.X版本至2.X版本，增加对XML的解析。
+ * <p>
+ * 默认的Jackson处理类 官方推荐使用缓存的JsonFactory、ObjectMapper
+ * Created by
  * YAN on 2015/09/30.
  */
 public class UtilJackson {
     private static final Log logger = LogFactory.getLog(UtilJackson.class);
     public static final ObjectMapper mapper = new ObjectMapper();
     public static final JsonFactory factory = mapper.getFactory();
+
+    //解析XML时使用
     public static final XmlMapper xml_mapper = new XmlMapper();
     public static final XmlFactory xml_factory = xml_mapper.getFactory();
 
     static {
+        /*
+
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -39,6 +48,7 @@ public class UtilJackson {
                 jg.writeString("");
             }
         });
+        */
     }
 
     /**
@@ -60,6 +70,8 @@ public class UtilJackson {
     }
 
     /**
+     * 序列化输出（生产环境不推荐使用）
+     *
      * @param object
      * @return
      */
@@ -73,7 +85,7 @@ public class UtilJackson {
     }
 
     /**
-     * 格式化输出
+     * 格式化输出（生产环境不推荐使用）
      *
      * @param object
      * @return
@@ -124,6 +136,12 @@ public class UtilJackson {
         return null;
     }
 
+    /**
+     * 解析XML
+     *
+     * @param content
+     * @return
+     */
     public static JsonNode readXmlTree(String content) {
         try {
             return xml_mapper.readTree(content);
@@ -133,6 +151,12 @@ public class UtilJackson {
         return null;
     }
 
+    /**
+     * 解析XML
+     *
+     * @param is
+     * @return
+     */
     public static JsonNode readXmlTree(InputStream is) {
         try {
             return xml_mapper.readTree(is);
@@ -227,7 +251,7 @@ public class UtilJackson {
         try {
             return mapper.readValue(content, valueTypeRef);
         } catch (Exception e) {
-            logger.error("readValue error.", e);
+            logger.error("fromJSON error.", e);
             return null;
         }
     }
