@@ -23,6 +23,7 @@ public class IndexServiceImpl implements IIndexService {
     public String hello() {
         logger.info("Hello world service!");
         "".substring(0, 100);
+        if (true) throw new RuntimeException();
         return indexDao.hello();
     }
 }
