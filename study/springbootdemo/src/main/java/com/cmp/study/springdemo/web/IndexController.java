@@ -1,9 +1,10 @@
 package com.cmp.study.springdemo.web;
 
 import com.cmp.study.springdemo.MySettings;
+import com.cmp.study.springdemo.service.IIndexService;
+import com.cmp.study.springdemo.service.IUserService;
 import com.cmp.study.springdemo.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/index")
-@EnableAutoConfiguration
 public class IndexController {
 
     @Autowired
     MySettings mySettings;
+
+    @Autowired
+    IIndexService indexService;
+
+    @Autowired
+    IUserService userService;
 
     @RequestMapping(value = "/hello")
     public UserVO hello() {
@@ -26,6 +32,10 @@ public class IndexController {
         UserVO user = new UserVO();
         user.setName("admin");
         user.setAddress("china");
+
+        indexService.index();
+        userService.hello();
+
         return user;
     }
 
