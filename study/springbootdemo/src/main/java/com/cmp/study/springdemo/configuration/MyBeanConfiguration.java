@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Configuration;
 public class MyBeanConfiguration {
 
     @Bean
-    public IUserService httpProxy2() {
+    public IUserService userService() {
         return new UserServiceImpl();
     }
 
     @Bean
-    public IIndexService httpProxy(IUserService userService) {
+    public IIndexService indexService(IUserService userService) {
         userService.hello();
         return new IndexServiceImpl();
     }
