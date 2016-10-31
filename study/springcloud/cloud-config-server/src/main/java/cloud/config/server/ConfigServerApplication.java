@@ -1,8 +1,4 @@
-/**
- * spring cloud config server
- *
- * @author lzhoumail@126.com
- */
+
 package cloud.config.server;
 
 import org.springframework.boot.SpringApplication;
