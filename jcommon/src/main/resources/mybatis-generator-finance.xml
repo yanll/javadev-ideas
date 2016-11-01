@@ -21,15 +21,15 @@
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <!--<sqlMapGenerator targetPackage="resources/finance/mappers" targetProject="src/main">-->
-            <!--<property name="enableSubPackages" value="true"/>-->
-        <!--</sqlMapGenerator>-->
+        <sqlMapGenerator targetPackage="resources/finance/mappers" targetProject="src/main">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
 
-        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.cmp.common.mappers" targetProject="src/main/java">-->
-            <!--<property name="enableSubPackages" value="true"/>-->
-        <!--</javaClientGenerator>-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.finance.mappers" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
         <!-- Tables -->
-        <table tableName="redeem" domainObjectName="GoodsBean" selectByExampleQueryId="false"
+        <table tableName="redeem" domainObjectName="RedeemBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
             <property name="useActualColumnNames" value="true"/>
