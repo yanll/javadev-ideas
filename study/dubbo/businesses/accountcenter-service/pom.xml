@@ -6,7 +6,6 @@
     <groupId>com.yanll.study.dubbo.businesses</groupId>
     <artifactId>accountcenter-service</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <parent>
         <!-- Inherit defaults from Spring Boot -->
