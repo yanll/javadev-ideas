@@ -1,0 +1,1 @@
+# Mybatis-generator国际化修改
