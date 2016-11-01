@@ -352,7 +352,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.17</version>
+                <version>5.1.38</version>
             </dependency>
 
             <dependency>
@@ -531,22 +531,11 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
-            <resource>
-                <directory>target/resources</directory>
-                <filtering>true</filtering>
-            </resource>
         </resources>
         <testResources>
             <testResource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-            </testResource>
-            <testResource>
-                <directory>src/main/webapp</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
             </testResource>
         </testResources>
         <plugins>
