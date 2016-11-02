@@ -6,7 +6,7 @@
 
     <context id="DB_Tables" targetRuntime="MyBatis3">
 
-        <!--<plugin type="com.yanll.mybatis.generator.plugins.MapperPlugin"/>-->
+        <plugin type="com.yanll.mybatis.generator.plugins.MapperPlugin"/>
 
         <commentGenerator>
             <property name="suppressDate" value="true"/>
