@@ -9,16 +9,13 @@
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
-            <property name="mergeable" value="false"></property>
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="h2finance" password="h2financepay"
                         connectionURL="jdbc:mysql://172.21.1.204:3306/trans_center?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
         </jdbcConnection>
 
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
-        </javaTypeResolver>
+
         <javaModelGenerator targetPackage="com.finance.bean" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
@@ -32,8 +29,6 @@
         <table tableName="redeem" domainObjectName="RedeemBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
-            <ignoreColumn column="create_datetime" delimitedColumnName="true"/>
-            <ignoreColumn column="modify_date" delimitedColumnName="true"/>
         </table>
     </context>
 </generatorConfiguration>
