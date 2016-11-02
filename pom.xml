@@ -14,7 +14,7 @@
         <module>jweb</module>
         <module>jtest</module>
         <module>study</module>
-        <module>mybatis-generator</module>
+        <module>mybatis-generator-ext</module>
     </modules>
 
 
