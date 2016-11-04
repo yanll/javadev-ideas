@@ -3,15 +3,15 @@ package com.finance.mappers;
 import com.finance.bean.RedeemBean;
 
 public interface RedeemBeanMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteById(Long id);
 
-    int insert(RedeemBean record);
+    int add(RedeemBean record);
 
-    int insertSelective(RedeemBean record);
+    int addSelective(RedeemBean record);
 
-    RedeemBean selectByPrimaryKey(Long id);
+    RedeemBean findById(Long id);
 
-    int updateByPrimaryKeySelective(RedeemBean record);
+    int modifySelective(RedeemBean record);
 
-    int updateByPrimaryKey(RedeemBean record);
+    int modify(RedeemBean record);
 }

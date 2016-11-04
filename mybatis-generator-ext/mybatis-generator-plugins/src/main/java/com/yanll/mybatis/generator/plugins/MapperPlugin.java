@@ -2,9 +2,6 @@ package com.yanll.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
-import org.mybatis.generator.internal.rules.Rules;
 
 import java.util.List;
 
@@ -17,16 +14,13 @@ public class MapperPlugin extends PluginAdapter {
 
     @Override
     public void initialized(IntrospectedTable introspectedTable) {
-        Rules rules = introspectedTable.getRules();
-        
+        //修改默认的命名（匹配现有框架的命名格式）
+        introspectedTable.setInsertStatementId("add");
+        introspectedTable.setInsertSelectiveStatementId("addSelective");
+        introspectedTable.setUpdateByPrimaryKeyStatementId("modify");
+        introspectedTable.setUpdateByPrimaryKeySelectiveStatementId("modifySelective");
+        introspectedTable.setDeleteByPrimaryKeyStatementId("deleteById");
+        introspectedTable.setSelectByPrimaryKeyStatementId("findById");
         super.initialized(introspectedTable);
-    }
-
-    @Override
-    public boolean providerInsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-
-        System.out.println("222222222222222222222222222");
-        System.out.print(method.getName());
-        return super.providerInsertSelectiveMethodGenerated(method, topLevelClass, introspectedTable);
     }
 }
