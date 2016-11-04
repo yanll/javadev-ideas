@@ -24,7 +24,6 @@
         <sqlMapGenerator targetPackage="resources/finance/mappers" targetProject="src/main">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <!--MybatisGenerator会强制生成*Mapper.java,由于BaseService已经抽象处理，此处扔到项目外（targetProject="/"），可自行删除。-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="/" targetProject="/">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
