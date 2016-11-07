@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class MapperPlugin extends PluginAdapter {
 
-    private static final String WARN = "当前文件为MybatisGenerator自动生成，重新生成可能会被覆盖，请勿修改！";
+    private static final String WARN = "当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！";
 
     @Override
     public boolean validate(List<String> list) {

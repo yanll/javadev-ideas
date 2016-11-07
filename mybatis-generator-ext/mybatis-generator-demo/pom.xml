@@ -25,37 +25,8 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!--<configurationFile>target/classes/mybatis-generator.xml</configurationFile>-->
-                    <configurationFile>target/classes/mybatis-generator-finance.xml</configurationFile>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.yanll</groupId>
-                        <artifactId>mybatis-generator-plugins</artifactId>
-                        <version>1.0-SNAPSHOT</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.38</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.mybatis</groupId>
-                        <artifactId>mybatis</artifactId>
-                        <version>3.4.0</version>
-                    </dependency>
-                </dependencies>
+
+
             </plugin>
         </plugins>
 
