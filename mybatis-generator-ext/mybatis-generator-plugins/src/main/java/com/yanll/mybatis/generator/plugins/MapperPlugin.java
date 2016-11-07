@@ -3,9 +3,7 @@ package com.yanll.mybatis.generator.plugins;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.api.dom.xml.TextElement;
@@ -29,7 +27,7 @@ import java.util.List;
  */
 public class MapperPlugin extends PluginAdapter {
 
-    private static final String WARN = "当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！";
+    private static final String WARN = "当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）";
 
     @Override
     public boolean validate(List<String> list) {
@@ -50,10 +48,25 @@ public class MapperPlugin extends PluginAdapter {
 
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        topLevelClass.addJavaDocLine("/*" + WARN + "*/");
+        String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名
+        topLevelClass.addJavaDocLine("/*");
+        topLevelClass.addJavaDocLine("* " + WARN);
+        topLevelClass.addJavaDocLine("* " + "对应数据库表：" + tableName);
+        topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
         topLevelClass.setSuperClass("DataEntity");
         topLevelClass.addImportedType("com.commons.DataEntity");
+
+        //增加serialVersionUID
+        Field field = new Field();
+        field.setVisibility(JavaVisibility.PRIVATE);
+        field.setStatic(true);
+        field.setFinal(true);
+        field.setType(new FullyQualifiedJavaType("long"));
+        field.setName("serialVersionUID");
+        field.setInitializationString("1L");
+        topLevelClass.addField(field);
+
         return super.modelBaseRecordClassGenerated(topLevelClass, introspectedTable);
     }
 
