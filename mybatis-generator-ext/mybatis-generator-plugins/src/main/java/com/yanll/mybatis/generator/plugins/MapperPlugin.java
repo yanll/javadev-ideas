@@ -1,17 +1,18 @@
 package com.yanll.mybatis.generator.plugins;
 
-import org.mybatis.generator.api.*;
+import org.mybatis.generator.api.GeneratedJavaFile;
+import org.mybatis.generator.api.IntrospectedColumn;
+import org.mybatis.generator.api.IntrospectedTable;
+import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.DefaultJavaFormatter;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
-import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.DefaultShellCallback;
-import org.mybatis.generator.internal.NullProgressCallback;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -29,8 +30,6 @@ import java.util.List;
  * 后期规划：生成VO、Service、查询扩展
  */
 public class MapperPlugin extends PluginAdapter {
-
-    private static final String WARN = "当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）";
 
     @Override
     public boolean validate(List<String> list) {
@@ -52,22 +51,15 @@ public class MapperPlugin extends PluginAdapter {
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名
         topLevelClass.addJavaDocLine("/*");
-        topLevelClass.addJavaDocLine("* " + WARN);
-        topLevelClass.addJavaDocLine("* " + "对应数据库表：" + tableName);
+        topLevelClass.addJavaDocLine("* " + PluginUtil.WARN);
+        topLevelClass.addJavaDocLine("* " + "table:" + tableName);
         topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
         //topLevelClass.setSuperClass("DataEntity");
         //topLevelClass.addImportedType("com.h2finance.framework.data.mysql.domain.DataEntity");
 
         //增加serialVersionUID
-        Field field = new Field();
-        field.setVisibility(JavaVisibility.PRIVATE);
-        field.setStatic(true);
-        field.setFinal(true);
-        field.setType(new FullyQualifiedJavaType("long"));
-        field.setName("serialVersionUID");
-        field.setInitializationString("1L");
-        topLevelClass.addField(field);
+        topLevelClass.addField(PluginUtil.getSerialVersionUIDField());
         return super.modelBaseRecordClassGenerated(topLevelClass, introspectedTable);
     }
 
@@ -105,7 +97,7 @@ public class MapperPlugin extends PluginAdapter {
         XmlElement parentElement = document.getRootElement();
         //生成Cache
         parentElement.addElement(0, new TextElement("<cache type=\"org.mybatis.caches.ehcache.EhcacheCache\"/>"));
-        parentElement.addElement(0, new TextElement("<!--" + WARN + "-->"));
+        parentElement.addElement(0, new TextElement("<!--" + PluginUtil.WARN + "-->"));
         //增加deleteByIds接口的sql元素
         String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名
         XmlElement deleteByIdsElement = new XmlElement("delete");
@@ -122,30 +114,57 @@ public class MapperPlugin extends PluginAdapter {
 
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
-        List<GeneratedJavaFile> list = new ArrayList<>();
         List<GeneratedJavaFile> files = introspectedTable.getGeneratedJavaFiles();
+        if (files == null) return null;
         for (GeneratedJavaFile file : files) {
             CompilationUnit compilationUnit = file.getCompilationUnit();
-            String targetPackage = file.getTargetPackage() + "ss";
             String fileEncoding = file.getFileEncoding();
-            System.out.println("======================" + targetPackage);
-            GeneratedJavaFile f = new GeneratedJavaFile(compilationUnit, targetPackage, fileEncoding, new DefaultJavaFormatter());
-            list.add(f);
+            String targetPackage = file.getTargetPackage();
+            String targetProject = file.getTargetProject();
+            if (compilationUnit.isJavaInterface()) continue;
+            TopLevelClass original = (TopLevelClass) compilationUnit;
+            String baseRecordType = introspectedTable.getBaseRecordType() + "VO";
+            TopLevelClass newModel = new TopLevelClass(baseRecordType);
+            newModel.addJavaDocLine("/*");
+            newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator自动生成的VO，请手动剪切到*-service项目。");
+            newModel.addJavaDocLine("*/");
+            newModel.addImportedTypes(compilationUnit.getImportedTypes());
+            newModel.addStaticImports(compilationUnit.getStaticImports());
+            newModel.setAbstract(false);
+            newModel.setStatic(false);
+            newModel.setFinal(false);
+            newModel.setVisibility(JavaVisibility.PUBLIC);
+            //VO默认都增加VoEntity继承
+            newModel.setSuperClass("VoEntity");
+            newModel.addImportedType("com.h2finance.framework.data.mysql.domain.VoEntity");
+            List<Field> fields = original.getFields();
+            if (fields != null) {
+                for (Field field : fields) {
+                    newModel.addField(field);
+                }
+            }
+            List<Method> methods = original.getMethods();
+            if (methods != null) {
+                for (Method method : methods) {
+                    newModel.addMethod(method);
+                }
+            }
+            GeneratedJavaFile f = new GeneratedJavaFile(newModel, targetProject, fileEncoding, new DefaultJavaFormatter());
 
-
-        }
-        List<String> warnings = new ArrayList<String>();
-        DefaultShellCallback callback = new DefaultShellCallback(true);
-
-        List<Context> contextsToRun = new ArrayList<>();
-        contextsToRun.add(introspectedTable.getContext());
-        for (Context context : contextsToRun) {
+            File targetFile;
+            String source;
             try {
-                context.generateFiles(new NullProgressCallback(), list, new ArrayList<GeneratedXmlFile>(), warnings);
-            } catch (InterruptedException e) {
+                DefaultShellCallback callback = new DefaultShellCallback(true);
+                File directory = callback.getDirectory(f.getTargetProject(), f.getTargetPackage());
+                targetFile = new File(directory, f.getFileName());
+                source = f.getFormattedContent();
+                PluginUtil.writeFile(targetFile, source, f.getFileEncoding());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return list;
+        return null;
     }
+
+
 }
