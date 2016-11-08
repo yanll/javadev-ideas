@@ -7,6 +7,7 @@
     <context id="DB_Tables" targetRuntime="MyBatis3">
         <!--MybatisGenerator插件扩展，用于匹配h2finance-->
         <plugin type="com.yanll.mybatis.generator.plugins.MapperPlugin"/>
+        <plugin type="com.yanll.mybatis.generator.plugins.VOPlugin"/>
 
         <commentGenerator>
             <property name="suppressDate" value="true"/><!--不生成时间戳注释-->
@@ -21,7 +22,6 @@
         <javaModelGenerator targetPackage="com.h2finance.business.redeem.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
-
 
 
         <!--sql xml生成的路径-->
