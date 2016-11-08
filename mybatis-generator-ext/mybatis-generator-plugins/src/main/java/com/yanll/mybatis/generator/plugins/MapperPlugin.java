@@ -1,14 +1,17 @@
 package com.yanll.mybatis.generator.plugins;
 
-import org.mybatis.generator.api.IntrospectedColumn;
-import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.PluginAdapter;
+import org.mybatis.generator.api.*;
+import org.mybatis.generator.api.dom.DefaultJavaFormatter;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
+import org.mybatis.generator.config.Context;
+import org.mybatis.generator.internal.DefaultShellCallback;
+import org.mybatis.generator.internal.NullProgressCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,8 +56,8 @@ public class MapperPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine("* " + "对应数据库表：" + tableName);
         topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
-        topLevelClass.setSuperClass("DataEntity");
-        topLevelClass.addImportedType("com.h2finance.framework.data.mysql.domain.DataEntity");
+        //topLevelClass.setSuperClass("DataEntity");
+        //topLevelClass.addImportedType("com.h2finance.framework.data.mysql.domain.DataEntity");
 
         //增加serialVersionUID
         Field field = new Field();
@@ -100,6 +103,8 @@ public class MapperPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
         XmlElement parentElement = document.getRootElement();
+        //生成Cache
+        parentElement.addElement(0, new TextElement("<cache type=\"org.mybatis.caches.ehcache.EhcacheCache\"/>"));
         parentElement.addElement(0, new TextElement("<!--" + WARN + "-->"));
         //增加deleteByIds接口的sql元素
         String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名
@@ -113,5 +118,34 @@ public class MapperPlugin extends PluginAdapter {
         deleteByIdsElement.addElement(new TextElement(sql_xml.toString()));
         parentElement.addElement(deleteByIdsElement);
         return super.sqlMapDocumentGenerated(document, introspectedTable);
+    }
+
+    @Override
+    public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
+        List<GeneratedJavaFile> list = new ArrayList<>();
+        List<GeneratedJavaFile> files = introspectedTable.getGeneratedJavaFiles();
+        for (GeneratedJavaFile file : files) {
+            CompilationUnit compilationUnit = file.getCompilationUnit();
+            String targetPackage = file.getTargetPackage() + "ss";
+            String fileEncoding = file.getFileEncoding();
+            System.out.println("======================" + targetPackage);
+            GeneratedJavaFile f = new GeneratedJavaFile(compilationUnit, targetPackage, fileEncoding, new DefaultJavaFormatter());
+            list.add(f);
+
+
+        }
+        List<String> warnings = new ArrayList<String>();
+        DefaultShellCallback callback = new DefaultShellCallback(true);
+
+        List<Context> contextsToRun = new ArrayList<>();
+        contextsToRun.add(introspectedTable.getContext());
+        for (Context context : contextsToRun) {
+            try {
+                context.generateFiles(new NullProgressCallback(), list, new ArrayList<GeneratedXmlFile>(), warnings);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }

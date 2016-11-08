@@ -22,6 +22,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
+
+
         <!--sql xml生成的路径-->
         <sqlMapGenerator targetPackage="resources/generated_mappers" targetProject="src/main">
             <property name="enableSubPackages" value="true"/>
