@@ -27,7 +27,6 @@ import java.util.List;
  * 代码生成原则：
  * 生成的不修改，修改的不生成。
  * <p>
- * 后期规划：生成VO、Service、查询扩展
  */
 public class MapperPlugin extends PluginAdapter {
 
