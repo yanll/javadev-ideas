@@ -23,7 +23,7 @@ import java.util.List;
  * 代码生成原则：
  * 生成的不修改，修改的不生成。
  * <p>
- * 后期规划：
+ * 后期规划：生成VO、Service、查询扩展
  */
 public class MapperPlugin extends PluginAdapter {
 
@@ -31,16 +31,15 @@ public class MapperPlugin extends PluginAdapter {
 
     @Override
     public boolean validate(List<String> list) {
+        System.out.println("[INFO] MapperPlugin开始生成Mapper文件...");
         return true;
     }
 
     @Override
     public void initialized(IntrospectedTable introspectedTable) {
         //修改默认的命名（匹配现有框架的命名格式）
-        introspectedTable.setInsertStatementId("add");
-        introspectedTable.setInsertSelectiveStatementId("addSelective");
-        introspectedTable.setUpdateByPrimaryKeyStatementId("modify");
-        introspectedTable.setUpdateByPrimaryKeySelectiveStatementId("modifySelective");
+        introspectedTable.setUpdateByPrimaryKeyStatementId("update");
+        introspectedTable.setUpdateByPrimaryKeySelectiveStatementId("updateSelective");
         introspectedTable.setDeleteByPrimaryKeyStatementId("deleteById");
         introspectedTable.setSelectByPrimaryKeyStatementId("findById");
         super.initialized(introspectedTable);
@@ -55,7 +54,7 @@ public class MapperPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
         topLevelClass.setSuperClass("DataEntity");
-        topLevelClass.addImportedType("com.commons.DataEntity");
+        topLevelClass.addImportedType("com.h2finance.framework.data.mysql.domain.DataEntity");
 
         //增加serialVersionUID
         Field field = new Field();
@@ -66,7 +65,6 @@ public class MapperPlugin extends PluginAdapter {
         field.setName("serialVersionUID");
         field.setInitializationString("1L");
         topLevelClass.addField(field);
-
         return super.modelBaseRecordClassGenerated(topLevelClass, introspectedTable);
     }
 
@@ -74,24 +72,31 @@ public class MapperPlugin extends PluginAdapter {
     @Override
     public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         //DataEntity已经存在，此处忽略不生成。
-        if ("createDatetime".equals(field.getName())) return false;
+        if ("createTime".equals(field.getName()) || "modifyTime".equals(field.getName())) return false;
         return super.modelFieldGenerated(field, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
     @Override
     public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         //DataEntity已经存在，此处忽略不生成。
-        if ("getCreateDatetime".equals(method.getName()) || "setCreateDatetime".equals(method.getName())) return false;
+        if ("getCreateTime".equals(method.getName()) || "getModifyTime".equals(method.getName())) return false;
         return super.modelGetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
     @Override
     public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         //DataEntity已经存在，此处忽略不生成。
-        if ("setCreateDatetime".equals(method.getName())) return false;
+        if ("setCreateTime".equals(method.getName()) || "setModifyTime".equals(method.getName())) return false;
         return super.modelGetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
+    /**
+     * 增加deleteByIds方法
+     *
+     * @param document
+     * @param introspectedTable
+     * @return
+     */
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
         XmlElement parentElement = document.getRootElement();

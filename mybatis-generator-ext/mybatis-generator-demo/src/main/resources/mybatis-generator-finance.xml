@@ -2,35 +2,45 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--MybatisGenerator代码生成配置文件，与项目无关联，仅代码生成使用-->
 <generatorConfiguration>
     <context id="DB_Tables" targetRuntime="MyBatis3">
-
-        <plugin type="com.yanll.mybatis.generator.plugins.MapperPlugin"/>
+        <!--MybatisGenerator插件扩展，用于匹配h2finance-->
+        <plugin type="com.h2finance.framework.util.helper.mybatis.generator.MapperPlugin"/>
 
         <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/><!--不生成时间戳注释-->
         </commentGenerator>
 
-
+        <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="h2finance" password="h2financepay"
                         connectionURL="jdbc:mysql://172.21.1.204:3306/trans_center?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
         </jdbcConnection>
 
-
-        <javaModelGenerator targetPackage="com.finance.bean" targetProject="src/main/java">
+        <!--Java Bean生成的路径以及package命名空间定义-->
+        <javaModelGenerator targetPackage="com.h2finance.business.redeem.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="resources/finance/mappers" targetProject="src/main">
+
+        <!--sql xml生成的路径-->
+        <sqlMapGenerator targetPackage="resources/generated_mappers" targetProject="src/main">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="/" targetProject="/">
+
+        <!--java mapper生成的路径以及package命名空间定义-->
+        <!--此处targetProject配置/是为了将*Mapper.java扔到项目外，h2finance已经做了抽象，用不到-->
+        <!--targetPackage路径对应项目中的dao文件夹，为了和手写的Mapper使用同一个接口，即调用框架的getMapper()-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.h2finance.business.redeem.dao" targetProject="/">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <!-- Tables -->
-        <table tableName="redeem" domainObjectName="RedeemBean" selectByExampleQueryId="false"
+
+
+        <!-- 需要生存的表，可以配置多个，*ByExample是示例，都配置false -->
+        <!-- tableName：表名，domainObjectName：实体名 -->
+        <table tableName="redeem" domainObjectName="Redeem" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/><!--配制generatedKey表示返回插入的主键，否则请删除这一行-->
         </table>
     </context>
 </generatorConfiguration>
