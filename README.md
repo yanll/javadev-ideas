@@ -14,6 +14,7 @@ javadev-ideas
 学习计划：
 javamelody
 图片服务器TFS（阿里开源图片服务器）
+rabbitmq
 
 
 
@@ -27,28 +28,13 @@ MogileFS：http://www.yupoo.com/
 
 
 工作流：
-JBPM:重量级
-Activiti:重量级
-Snaker:已停止更新
-JFlow:GPL协议
+JBPM:
+Activiti:
+
+Snaker:
+JFlow:
 JFlower:
-OpenWebFlow:基于Activiti
-Spring Workflow:基于Activiti
+OpenWebFlow:
+Spring Workflow:
 
-
-
-
-
-Redis服务未发布
-
-
-tomcat
-deploy-user-inverestor缺redis   console-user启动失败
-
-
-tomcat8
-console-cashout错误
-console-borowwer拒绝连接
-
-tomcat-product
 

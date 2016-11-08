@@ -1,0 +1,1 @@
+基于MybatisGenerator扩展。
