@@ -1,7 +1,7 @@
 package api;
 
-import com.cmp.common.json.UtilJackson;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.yanll.framework.util.jackson.UtilJackson;
 
 /**
  * Created by YANLL on 2016/10/19.
