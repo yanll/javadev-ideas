@@ -1,22 +1,10 @@
 package com.cmp.jp.api.indexdata.controller;
 
-import com.cmp.common.bean.IndexDataBean;
-import com.cmp.common.constants.Consts;
-import com.cmp.common.enums.IEnum;
-import com.cmp.common.json.JSON;
-import com.cmp.common.json.UtilJackson;
-import com.cmp.common.modules.indexdata.service.IIndexDataService;
-import com.cmp.common.modules.indexdata.vo.ModuleVO;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 /**
  * Created by YANLL on 2016/08/29.
@@ -25,6 +13,7 @@ import java.util.List;
 @RequestMapping(value = "/api/indexdata", name = "首页数据模块控制器")
 public class IndexDataController {
     private static final Log logger = LogFactory.getLog(IndexDataController.class);
+    /*
     @Autowired
     IIndexDataService indexDataService;
 
@@ -64,5 +53,6 @@ public class IndexDataController {
             return new JSON(0);
         }
     }
+    */
 }
 

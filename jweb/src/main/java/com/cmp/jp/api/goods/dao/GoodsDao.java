@@ -1,6 +1,6 @@
 package com.cmp.jp.api.goods.dao;
 
-import com.cmp.common.bean.GoodsTypeBean;
+import com.cmp.jp.api.goods.bean.GoodsTypeBean;
 import com.cmp.jp.api.goods.vo.GoodsVO;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import org.apache.ibatis.annotations.Param;

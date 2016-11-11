@@ -1,10 +1,10 @@
 package com.cmp.jp.api.goods.controller;
 
-import com.cmp.common.bean.GoodsTypeBean;
-import com.cmp.common.json.JSON;
-import com.cmp.common.utils.UPage;
+import com.cmp.jp.api.goods.bean.GoodsTypeBean;
 import com.cmp.jp.api.goods.service.IGoodsService;
 import com.cmp.jp.api.goods.vo.GoodsVO;
+import com.yanll.framework.util.UPage;
+import com.yanll.framework.web.message.JSON;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
