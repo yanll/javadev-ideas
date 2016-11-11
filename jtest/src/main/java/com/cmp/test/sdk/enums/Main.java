@@ -1,7 +1,8 @@
 package com.cmp.test.sdk.enums;
 
-import com.cmp.common.enums.IEnum;
-import com.cmp.common.json.UtilJackson;
+
+import com.yanll.framework.util.enums.EnumUtil;
+import com.yanll.framework.util.enums.IEnum;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class Main {
         cache.doit();
 
 
-        Map<Integer, String> map = IEnum.Util.toMap(IEnum.YESNO.class);
+        Map<Integer, String> map = EnumUtil.toMap(IEnum.YESNO.class);
         System.out.println(map);
 
 

@@ -1,10 +1,10 @@
 package com.cmp.test.jackson;
 
-import com.cmp.common.json.UtilJackson;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.yanll.framework.util.jackson.UtilJackson;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;

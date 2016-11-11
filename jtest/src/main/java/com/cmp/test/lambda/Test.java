@@ -1,6 +1,6 @@
 package com.cmp.test.lambda;//package com.cmp.lambda;
 
-import com.cmp.common.utils.UtilVelocity;
+import com.yanll.framework.util.UtilVelocity;
 import org.apache.velocity.VelocityContext;
 
 import java.util.Arrays;
