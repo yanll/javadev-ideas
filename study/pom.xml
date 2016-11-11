@@ -18,6 +18,7 @@
         <module>docker</module>
         <module>springcloud</module>
         <module>rabbitmqdemo</module>
+        <module>mybatis-generator-demo</module>
     </modules>
 
 

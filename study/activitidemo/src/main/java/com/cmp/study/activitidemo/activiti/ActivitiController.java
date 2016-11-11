@@ -1,6 +1,6 @@
 package com.cmp.study.activitidemo.activiti;
 
-import com.cmp.common.utils.FileUtil;
+import com.yanll.framework.util.FileUtil;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Model;
