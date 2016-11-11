@@ -46,8 +46,8 @@ public class VOPlugin extends PluginAdapter {
             newModel.setFinal(false);
             newModel.setVisibility(JavaVisibility.PUBLIC);
             //VO默认都增加VoEntity继承
-            newModel.setSuperClass("VoEntity");
-            newModel.addImportedType("com.h2finance.framework.data.mysql.domain.VoEntity");
+            newModel.setSuperClass("VOEntity");
+            newModel.addImportedType("com.yanll.framework.data.mysql.domain.VOEntity");
             List<Field> fields = original.getFields();
             if (fields != null) {
                 for (Field field : fields) {

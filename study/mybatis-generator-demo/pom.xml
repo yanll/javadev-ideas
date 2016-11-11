@@ -6,17 +6,21 @@
     <groupId>com.yanll</groupId>
     <artifactId>mybatis-generator-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.yanll</groupId>
-                <artifactId>dependencies-bom</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
+    <parent>
+        <groupId>com.yanll</groupId>
+        <artifactId>dependencies-bom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../dependencies-bom/pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yanll.frameworks</groupId>
+            <artifactId>frameworks-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

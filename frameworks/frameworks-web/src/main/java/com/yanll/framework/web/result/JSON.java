@@ -1,4 +1,4 @@
-package com.yanll.framework.web.message;
+package com.yanll.framework.web.result;
 
 
 import java.util.Date;

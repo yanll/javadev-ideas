@@ -4,7 +4,7 @@ import com.cmp.jp.api.goods.bean.GoodsTypeBean;
 import com.cmp.jp.api.goods.service.IGoodsService;
 import com.cmp.jp.api.goods.vo.GoodsVO;
 import com.yanll.framework.util.UPage;
-import com.yanll.framework.web.message.JSON;
+import com.yanll.framework.web.result.JSON;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;

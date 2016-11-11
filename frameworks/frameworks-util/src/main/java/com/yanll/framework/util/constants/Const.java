@@ -17,4 +17,9 @@ public class Const {
     private static final Integer WEB_INF_INDEX = ROOT_CLASSPATH.indexOf("/WEB-INF");
     public static final String WEB_ROOT = WEB_INF_INDEX < 0 ? System.getProperty("webapp.root") : ROOT_CLASSPATH.substring(0, WEB_INF_INDEX);
 
+    public static class YESNO {
+        public static final int Y = 1;
+        public static final int N = 0;
+    }
+
 }

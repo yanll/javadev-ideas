@@ -8,17 +8,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.yanll</groupId>
-                <artifactId>dependencies-bom</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <modules>
         <module>apis</module>
@@ -31,7 +20,7 @@
         <!-- Inherit defaults from Spring Boot -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.0.RELEASE</version>
+        <version>1.4.1.RELEASE</version>
     </parent>
 
     <properties>

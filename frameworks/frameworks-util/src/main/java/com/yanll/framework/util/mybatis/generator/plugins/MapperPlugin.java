@@ -52,8 +52,8 @@ public class MapperPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine("* " + "table:" + tableName);
         topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
-        //topLevelClass.setSuperClass("DataEntity");
-        //topLevelClass.addImportedType("com.h2finance.framework.data.mysql.domain.DataEntity");
+        topLevelClass.setSuperClass("DataEntity");
+        topLevelClass.addImportedType("com.yanll.framework.data.mysql.domain.DataEntity");
 
         //增加serialVersionUID
         topLevelClass.addField(PluginUtil.getSerialVersionUIDField());
