@@ -8,6 +8,18 @@
     <packaging>pom</packaging>
 
     <repositories>
+
+        <repository>
+            <id>oschina</id>
+            <name>oschina</name>
+            <url>http://maven.oschina.net/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>jBoss-thirdparty-releases</id>
             <name>JBoss Thirdparty Releases</name>
@@ -21,6 +33,11 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>ali</id>
+            <name>ali</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <properties>
@@ -28,7 +45,7 @@
         <jdk.version>1.8</jdk.version>
         <deploy.version>${project.version}</deploy.version>
         <finalName>${project.artifactId}-${project.version}</finalName>
-        <spring.version>4.3.2.RELEASE</spring.version>
+        <spring.version>4.3.3.RELEASE</spring.version>
         <activiti.version>5.21.0</activiti.version>
     </properties>
 
@@ -716,12 +733,14 @@
                             <artifactId>mybatis</artifactId>
                             <version>3.4.0</version>
                         </dependency>
+                        <dependency>
+                            <groupId>com.yanll.frameworks</groupId>
+                            <artifactId>frameworks-util</artifactId>
+                            <version>1.0-SNAPSHOT</version>
+                        </dependency>
                     </dependencies>
                 </plugin>
-
             </plugins>
-
-
         </pluginManagement>
 
     </build>

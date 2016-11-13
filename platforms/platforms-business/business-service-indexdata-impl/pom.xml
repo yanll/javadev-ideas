@@ -19,19 +19,4 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.yanll.frameworks</groupId>
-                        <artifactId>frameworks-util</artifactId>
-                        <version>1.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
 </project>
