@@ -4,11 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="com.h2finance.business.account.domain"/>
+        <package name="com.yanll.business.indexdata.domain"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/AccountMapper.xml"/>
-        <mapper resource="mapper/AccountLogMapper.xml"/>
-        <mapper resource="mapper/InterestMapper.xml"/>
+        <mapper resource="mapper/IndexDataBeanMapper.xml"/>
+        <mapper resource="mapper/IndexDataDefBeanMapper.xml"/>
     </mappers>
 </configuration>

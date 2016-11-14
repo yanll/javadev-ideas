@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Created by YANLL on 2016/09/30.
  */
-//@ConfigurationProperties(prefix = "mysettings", locations = "classpath:mysettings.properties")
+@ConfigurationProperties(prefix = "mysettings", locations = "classpath:mysettings.properties")
 public class MySettings {
     private String name;
     private String fix;
