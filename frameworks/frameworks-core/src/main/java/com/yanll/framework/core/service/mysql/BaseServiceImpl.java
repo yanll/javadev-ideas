@@ -6,11 +6,10 @@ import com.yanll.framework.data.mysql.domain.DataEntity;
 import com.yanll.framework.data.mysql.domain.VOEntity;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.exception.BizException;
-import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.lang.reflect.InvocationTargetException;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 
 public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> implements BaseService<V> {
 
@@ -139,11 +138,9 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
         }
         V v = getVO();
         try {
-            BeanUtils.copyProperties(v, t);
-        } catch (IllegalAccessException ex) {
-            logger.error("toVO IllegalAccessException:", ex);
-        } catch (InvocationTargetException ex) {
-            logger.error("toVO InvocationTargetException:", ex);
+            BeanUtils.copyProperties(t, v);
+        } catch (BeansException ex) {
+            logger.error("toVO BeansException:", ex);
         } catch (Exception ex) {
             logger.error("toVO Exception:", ex);
         }
@@ -162,11 +159,9 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
         }
         T t = getDataEntity();
         try {
-            BeanUtils.copyProperties(t, e);
-        } catch (IllegalAccessException ex) {
-            logger.error("toDO IllegalAccessException:", ex);
-        } catch (InvocationTargetException ex) {
-            logger.error("toDO InvocationTargetException:", ex);
+            BeanUtils.copyProperties(e, t);
+        } catch (BeansException ex) {
+            logger.error("toDO BeansException:", ex);
         } catch (Exception ex) {
             logger.error("toDO Exception:", ex);
         }
