@@ -36,11 +36,6 @@ public class MapperPlugin extends PluginAdapter {
 
     @Override
     public void initialized(IntrospectedTable introspectedTable) {
-        //修改默认的命名（匹配现有框架的命名格式）
-        introspectedTable.setUpdateByPrimaryKeyStatementId("update");
-        introspectedTable.setUpdateByPrimaryKeySelectiveStatementId("updateSelective");
-        introspectedTable.setDeleteByPrimaryKeyStatementId("deleteById");
-        introspectedTable.setSelectByPrimaryKeyStatementId("findById");
         super.initialized(introspectedTable);
     }
 
@@ -98,7 +93,7 @@ public class MapperPlugin extends PluginAdapter {
         //增加deleteByIds接口的sql元素
         String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名
         XmlElement deleteByIdsElement = new XmlElement("delete");
-        deleteByIdsElement.addAttribute(new Attribute("id", "deleteByIds"));
+        deleteByIdsElement.addAttribute(new Attribute("id", "deleteByPrimaryKeys"));
         StringBuffer sql_xml = new StringBuffer();
         sql_xml.append("delete from ").append(tableName).append(" where id IN ");
         sql_xml.append("<foreach collection=\"ids\" item=\"id\" separator=\",\" open=\"(\" close=\")\">");

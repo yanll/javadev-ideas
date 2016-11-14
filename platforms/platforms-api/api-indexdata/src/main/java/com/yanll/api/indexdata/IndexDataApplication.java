@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {/*"com.yanll.framework.web", "com.yanll.business.indexdata",*/ "com.yanll.api.indexdata"})
-//@MapperScan(basePackages = "com.yanll.business.indexdata.dao")
+@ComponentScan(basePackages = {"com.yanll.framework.web", "com.yanll.business.indexdata", "com.yanll.api.indexdata"})
+@MapperScan(basePackages = "com.yanll.business.indexdata.dao")
 public class IndexDataApplication {
 
 
