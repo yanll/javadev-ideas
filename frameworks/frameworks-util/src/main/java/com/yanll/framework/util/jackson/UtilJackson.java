@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.dataformat.xml.XmlFactory;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -19,6 +17,9 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
+
+//import com.fasterxml.jackson.dataformat.xml.XmlFactory;
+//import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 /**
  * 升级jackson 1.X版本至2.X版本，增加对XML的解析。
@@ -33,8 +34,8 @@ public class UtilJackson {
     public static final JsonFactory factory = mapper.getFactory();
 
     //解析XML时使用
-    public static final XmlMapper xml_mapper = new XmlMapper();
-    public static final XmlFactory xml_factory = xml_mapper.getFactory();
+    //public static final XmlMapper xml_mapper = new XmlMapper();
+    //public static final XmlFactory xml_factory = xml_mapper.getFactory();
 
     static {
         /*
@@ -143,6 +144,7 @@ public class UtilJackson {
      * @param content
      * @return
      */
+    /*
     public static JsonNode readXmlTree(String content) {
         try {
             return xml_mapper.readTree(content);
@@ -151,6 +153,7 @@ public class UtilJackson {
         }
         return null;
     }
+    */
 
     /**
      * 解析XML
@@ -158,6 +161,7 @@ public class UtilJackson {
      * @param is
      * @return
      */
+    /*
     public static JsonNode readXmlTree(InputStream is) {
         try {
             return xml_mapper.readTree(is);
@@ -166,6 +170,7 @@ public class UtilJackson {
         }
         return null;
     }
+    */
 
     /**
      * 创建JSON处理器的静态方法
