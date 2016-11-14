@@ -10,6 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * Created by YANLL on 2016/05/04.
  */
@@ -24,6 +26,8 @@ public class IndexDataServiceImpl extends BaseServiceImpl<IndexDataBean, IndexDa
     @Override
     public IndexDataBeanVO getIndexData(Long id) {
         IndexDataBean bean = indexDataBeanMapper.selectByPrimaryKey(id);
+        bean.setCreateTime(new Date());
+        bean.setModifyTime(new Date());
         IndexDataBeanVO vo = toVO(bean);
         return vo;
     }

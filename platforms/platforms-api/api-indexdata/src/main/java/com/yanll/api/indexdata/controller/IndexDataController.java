@@ -26,7 +26,7 @@ public class IndexDataController {
     @ResponseBody
     public JSON navi() {
         try {
-            IndexDataBeanVO vo = indexDataService.getIndexData(4L);
+            IndexDataBeanVO vo = indexDataService.getIndexData(5L);
             return new JSON(1000, vo);
         } catch (Exception e) {
             logger.error("indexdata navi error.", e);

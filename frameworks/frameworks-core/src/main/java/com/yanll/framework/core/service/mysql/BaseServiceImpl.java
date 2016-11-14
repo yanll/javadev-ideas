@@ -133,7 +133,6 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
      * @param t
      * @return
      */
-    @SuppressWarnings("unchecked")
     protected V toVO(T t) {
         if (t == null) {
             return null;
@@ -142,11 +141,11 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
         try {
             BeanUtils.copyProperties(v, t);
         } catch (IllegalAccessException ex) {
-            logger.error("toVo IllegalAccessException:", ex);
+            logger.error("toVO IllegalAccessException:", ex);
         } catch (InvocationTargetException ex) {
-            logger.error("toVo InvocationTargetException:", ex);
+            logger.error("toVO InvocationTargetException:", ex);
         } catch (Exception ex) {
-            logger.error("toVo Exception:", ex);
+            logger.error("toVO Exception:", ex);
         }
         return v;
     }
@@ -165,11 +164,11 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
         try {
             BeanUtils.copyProperties(t, e);
         } catch (IllegalAccessException ex) {
-            logger.error("toDo IllegalAccessException:", ex);
+            logger.error("toDO IllegalAccessException:", ex);
         } catch (InvocationTargetException ex) {
-            logger.error("toDo InvocationTargetException:", ex);
+            logger.error("toDO InvocationTargetException:", ex);
         } catch (Exception ex) {
-            logger.error("toDo Exception:", ex);
+            logger.error("toDO Exception:", ex);
         }
         return t;
     }
