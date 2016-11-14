@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/index")
 public class IndexController {
 
-    @Autowired
-    MySettings mySettings;
+//    @Autowired
+//    MySettings mySettings;
 
     @Autowired
     IIndexService indexService;
@@ -28,7 +28,7 @@ public class IndexController {
     @RequestMapping(value = "/hello")
     public UserVO hello() {
         System.out.println("hello...");
-        System.out.println(mySettings.getName() + mySettings.getFix());
+//        System.out.println(mySettings.getName() + mySettings.getFix());
         UserVO user = new UserVO();
         user.setName("admin");
         user.setAddress("china");

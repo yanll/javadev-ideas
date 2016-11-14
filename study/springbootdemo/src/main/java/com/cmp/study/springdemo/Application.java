@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-@EnableConfigurationProperties({MySettings.class})
+//@EnableConfigurationProperties({MySettings.class})
 @ComponentScan(basePackages = "com.cmp.study.springdemo.web", basePackageClasses = FrameworkUtilConfiguration.class)
 public class Application {
 
