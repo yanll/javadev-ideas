@@ -7,7 +7,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zhuhu.util.HttpClientUtil;
@@ -60,19 +59,7 @@ public class Login {
         request.setEntity(entity);
         loginState = HttpClientUtil.getWebPage(httpClient, context, request, "utf-8", false);//登录
         System.out.println(loginState);
-        JSONObject jo = new JSONObject(loginState);
-        if (jo.get("r").toString().equals("0")) {
-            System.out.println("登录成功");
-            getRequest = new HttpGet("https://www.zhihu.com");
-            //访问首页
-            HttpClientUtil.getWebPage(httpClient, context, getRequest, "utf-8", false);
-            //序列化知乎Cookies，下次登录直接通过该cookies登录
-            HttpClientUtil.serialize(context.getCookieStore(), "/var/zhihucookies");
-            return true;
-        } else {
-            System.out.println("登录失败" + loginState);
-            return false;
-        }
+        return true;
     }
 
     /**
