@@ -1,7 +1,5 @@
 package zhuhu.client;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -10,6 +8,8 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zhuhu.util.HttpClientUtil;
 
 import java.io.UnsupportedEncodingException;
@@ -21,7 +21,7 @@ import java.util.Scanner;
  * 模拟登录知乎
  */
 public class Login {
-    private static final Log logger = LogFactory.getLog(Login.class);
+    private static final Logger logger = LoggerFactory.getLogger(Login.class);
     //知乎首页
     public final static String INDEX_URL = "https://www.zhihu.com";
     //手机号码登录地址

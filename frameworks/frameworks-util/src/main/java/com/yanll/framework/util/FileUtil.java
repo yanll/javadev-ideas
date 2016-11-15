@@ -1,8 +1,9 @@
 package com.yanll.framework.util;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class FileUtil {
 
-    private static final Log logger = LogFactory.getLog(FileUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
 
 
     public static void copyFile(String src, String dest) throws IOException {

@@ -1,12 +1,12 @@
 package com.yanll.framework.web.filter;
 
 import org.apache.commons.lang.time.StopWatch;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class APIExecuteTimeAdvice {
-    private static final Log logger = LogFactory.getLog(APIExecuteTimeAdvice.class);
+    private static final Logger logger = LoggerFactory.getLogger(APIExecuteTimeAdvice.class);
 
     @Around("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {

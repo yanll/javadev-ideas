@@ -1,7 +1,8 @@
 package com.yanll.framework.util.enums;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,7 +13,7 @@ import java.util.Map;
  * Created by Administrator on 2016/11/11.
  */
 public class EnumUtil {
-    private static final Log logger = LogFactory.getLog(EnumUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(EnumUtil.class);
 
     public static <T> boolean exists(T value, Class em) {
         try {

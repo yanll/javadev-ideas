@@ -1,12 +1,12 @@
 package com.yanll.framework.util;
 
 import com.yanll.framework.util.constants.Const;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class UtilVelocity {
 
-    private static final Log logger = LogFactory.getLog(UtilVelocity.class);
+    private static final Logger logger = LoggerFactory.getLogger(UtilVelocity.class);
     private static VelocityEngine engine = null;
 
 

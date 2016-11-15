@@ -1,8 +1,6 @@
 package zhuhu.util;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -24,6 +22,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BestMatchSpecFactory;
 import org.apache.http.impl.cookie.BrowserCompatSpecFactory;
 import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import java.util.Map;
  * HttpClient工具类
  */
 public class HttpClientUtil {
-    private static final Log logger = LogFactory.getLog(HttpClientUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
 
     /**
      * @param httpClient     HttpClient客户端

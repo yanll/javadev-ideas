@@ -5,8 +5,8 @@ import com.cmp.jp.api.goods.service.IGoodsService;
 import com.cmp.jp.api.goods.vo.GoodsVO;
 import com.yanll.framework.util.UPage;
 import com.yanll.framework.web.result.JSON;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/api/goods", name = "商品模块控制器")
 public class GoodsController {
-    private static final Log logger = LogFactory.getLog(GoodsController.class);
+    private static final Logger logger = LoggerFactory.getLogger(GoodsController.class);
     @Autowired
     IGoodsService goodsService;
 

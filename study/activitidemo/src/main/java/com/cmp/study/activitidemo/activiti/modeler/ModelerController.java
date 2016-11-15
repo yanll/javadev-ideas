@@ -12,8 +12,8 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_NAME;
 @RequestMapping("/activiti_process")
 public class ModelerController {
 
-    private static final Log logger = LogFactory.getLog(ModelerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ModelerController.class);
 
     @Autowired
     ObjectMapper objectMapper;

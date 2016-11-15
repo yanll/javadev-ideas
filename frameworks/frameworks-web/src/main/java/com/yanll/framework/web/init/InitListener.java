@@ -1,8 +1,9 @@
 package com.yanll.framework.web.init;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -10,7 +11,7 @@ import javax.servlet.ServletContextListener;
 
 public class InitListener implements ServletContextListener {
 
-    private static final Log logger = LogFactory.getLog(InitListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(InitListener.class);
 
     @Override
     public void contextDestroyed(ServletContextEvent arg0) {

@@ -4,8 +4,8 @@ package com.yanll.api.indexdata.controller;
 import com.yanll.business.indexdata.domain.IndexDataBeanVO;
 import com.yanll.business.indexdata.service.IIndexDataService;
 import com.yanll.framework.web.result.JSON;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api/indexdata", name = "首页数据模块控制器")
 public class IndexDataController {
-    private static final Log logger = LogFactory.getLog(IndexDataController.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexDataController.class);
     @Autowired
     IIndexDataService indexDataService;
 

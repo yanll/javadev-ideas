@@ -1,8 +1,8 @@
 package com.cmp.study.dubbo.businesses.accountcenter.service.impl;
 
 import com.cmp.study.dubbo.businesses.accountcenter.service.IUserService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @com.alibaba.dubbo.config.annotation.Service
 public class UserServiceImpl implements IUserService {
 
-    private static final Log logger = LogFactory.getLog(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
     public String save() {

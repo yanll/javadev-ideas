@@ -1,8 +1,8 @@
 package com.cmp.study.dubbo.businesses.accountcenter.dao.impl;
 
 import com.cmp.study.dubbo.businesses.accountcenter.dao.IIndexDao;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class IndexDaoImpl implements IIndexDao {
 
-    private static final Log logger = LogFactory.getLog(IndexDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexDaoImpl.class);
 
     @Override
     public String hello() {

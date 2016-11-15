@@ -2,8 +2,6 @@
 //
 //import com.cmp.common.db.DataSource;
 //import com.cmp.common.db.HandleDataSource;
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
 //import org.aspectj.lang.JoinPoint;
 //import org.aspectj.lang.annotation.Aspect;
 //import org.aspectj.lang.annotation.Before;
@@ -21,7 +19,7 @@
 //public class DataSourceAspect {
 //
 //
-//    private static final Log logger = LogFactory.getLog(DataSourceAspect.class);
+//    private static final Logger logger = LoggerFactory.getLogger(DataSourceAspect.class);
 //
 //    @Before("execution(* com.cmp..mappers.*.*(..))")
 //    public void before(JoinPoint point) {

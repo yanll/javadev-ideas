@@ -5,8 +5,8 @@ import com.yanll.business.indexdata.domain.IndexDataBean;
 import com.yanll.business.indexdata.domain.IndexDataBeanVO;
 import com.yanll.framework.core.service.mysql.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class IndexDataServiceImpl extends BaseServiceImpl<IndexDataBean, IndexDataBeanVO> implements IIndexDataService {
 
-    private static final Log logger = LogFactory.getLog(IndexDataServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexDataServiceImpl.class);
 
     @Autowired
     IndexDataBeanMapper indexDataBeanMapper;

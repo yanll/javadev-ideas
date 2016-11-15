@@ -4,8 +4,6 @@ import com.cmp.common.bean.GoodsBrandBean;
 import com.cmp.common.bean.GoodsTagBean;
 import com.cmp.common.bean.GoodsTypeBean;
 import com.cmp.common.modules.basedata.dao.BaseDataDao;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ import java.util.List;
 @Service
 public class BaseDataServiceImpl implements IBaseDataService {
 
-    private static final Log logger = LogFactory.getLog(BaseDataServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseDataServiceImpl.class);
 
 
     @Autowired

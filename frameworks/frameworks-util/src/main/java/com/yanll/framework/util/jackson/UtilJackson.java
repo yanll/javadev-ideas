@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +29,7 @@ import java.util.Map;
  * YAN on 2015/09/30.
  */
 public class UtilJackson {
-    private static final Log logger = LogFactory.getLog(UtilJackson.class);
+    private static final Logger logger = LoggerFactory.getLogger(UtilJackson.class);
     public static final ObjectMapper mapper = new ObjectMapper();
     public static final JsonFactory factory = mapper.getFactory();
 

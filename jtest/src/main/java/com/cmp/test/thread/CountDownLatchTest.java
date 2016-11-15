@@ -1,7 +1,7 @@
 package com.cmp.test.thread;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 
 @Component("BackupRankDay0106Job")
 public class CountDownLatchTest implements Runnable {
-    private static final Log logger = LogFactory.getLog(CountDownLatchTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(CountDownLatchTest.class);
     private static final int THREDS_SIZE = 20;
     private static ExecutorService threadPool = Executors.newFixedThreadPool(THREDS_SIZE / 4);
 

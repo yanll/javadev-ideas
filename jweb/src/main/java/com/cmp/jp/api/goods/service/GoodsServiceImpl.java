@@ -4,8 +4,8 @@ import com.cmp.jp.api.goods.bean.GoodsTypeBean;
 import com.cmp.jp.api.goods.dao.GoodsDao;
 import com.cmp.jp.api.goods.vo.GoodsVO;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service
 public class GoodsServiceImpl implements IGoodsService {
-    private static final Log logger = LogFactory.getLog(GoodsServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(GoodsServiceImpl.class);
     @Autowired
     GoodsDao goodsDao;
 

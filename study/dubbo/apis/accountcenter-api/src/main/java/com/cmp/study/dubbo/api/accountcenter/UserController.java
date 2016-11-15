@@ -2,8 +2,8 @@ package com.cmp.study.dubbo.api.accountcenter;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cmp.study.dubbo.businesses.accountcenter.service.IUserService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class UserController {
 
-    private static final Log logger = LogFactory.getLog(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Reference
     IUserService userService;

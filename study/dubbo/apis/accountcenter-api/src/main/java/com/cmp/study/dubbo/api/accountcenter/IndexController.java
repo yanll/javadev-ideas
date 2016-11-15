@@ -1,8 +1,8 @@
 package com.cmp.study.dubbo.api.accountcenter;
 
 import com.cmp.study.dubbo.businesses.accountcenter.service.IIndexService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class IndexController {
 
-    private static final Log logger = LogFactory.getLog(IndexController.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     IIndexService indexService;

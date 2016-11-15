@@ -4,8 +4,8 @@ import com.yanll.framework.util.FileUtil;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Model;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -25,7 +25,7 @@ import java.util.Map;
 @RequestMapping("/activiti")
 public class ActivitiController {
 
-    private static final Log logger = LogFactory.getLog(ActivitiController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ActivitiController.class);
 
     @Autowired
     JdbcTemplate jdbcTemplate;

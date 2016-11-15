@@ -1,8 +1,8 @@
 package com.cmp.study.dubbo.deploys.accountcenter;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource(locations = "classpath:accountcenter-provider.xml")
 @ComponentScan(basePackages = "com.cmp.study.dubbo.businesses.accountcenter")
 public class AccountCenterApplication {
-    private static final Log logger = LogFactory.getLog(AccountCenterApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(AccountCenterApplication.class);
 
     public static void main(String[] args) {
         try {
