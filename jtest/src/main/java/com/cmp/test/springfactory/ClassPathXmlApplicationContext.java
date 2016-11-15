@@ -1,4 +1,4 @@
-package com.cmp.test.factory;
+package com.cmp.test.springfactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +11,8 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
 
     public ClassPathXmlApplicationContext() throws Exception, Exception {
 
-        beans.put("student", Class.forName("com.cm.core.test.factory.Student").newInstance());
-        beans.put("dao", Class.forName("com.cm.core.test.factory.Dao").newInstance());
+        beans.put("student", Class.forName("com.cm.core.test.springfactory.Student").newInstance());
+        beans.put("dao", Class.forName("com.cm.core.test.springfactory.Dao").newInstance());
     }
 
 

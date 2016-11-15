@@ -20,9 +20,9 @@
         <module>dependencies-bom</module>
         <module>frameworks</module>
         <module>platforms</module>
-        <module>jcrawler</module>
-        <module>jweb</module>
         <module>jtest</module>
         <module>study</module>
+        <!--<module>jcrawler</module>-->
+        <!--<module>jweb</module>-->
     </modules>
 </project>

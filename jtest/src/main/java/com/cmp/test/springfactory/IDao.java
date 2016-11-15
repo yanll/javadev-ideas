@@ -1,4 +1,4 @@
-package com.cmp.test.factory;
+package com.cmp.test.springfactory;
 
 /**
  * Created by YLL on 2015/07/28.
