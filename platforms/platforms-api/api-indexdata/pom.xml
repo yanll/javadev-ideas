@@ -9,6 +9,7 @@
         <groupId>com.yanll.platforms</groupId>
         <artifactId>platforms-api</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <dependencies>
         <dependency>
