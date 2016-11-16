@@ -1,4 +1,4 @@
-package com.cmp.test.socket.i;
+package com.cmp.test.socket.ii;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class Client {
     private String host = "localhost";
-    private int port = 8189;
+    private int port = 8188;
 
     public void chat() {
         String msg = null;
@@ -28,6 +28,11 @@ public class Client {
     }
 
     public static void main(String[] args) {
+        new Client().chat();
+        new Client().chat();
+        new Client().chat();
+        new Client().chat();
+        new Client().chat();
         new Client().chat();
     }
 }
