@@ -6,11 +6,10 @@ import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
-import org.mybatis.generator.api.dom.xml.Attribute;
-import org.mybatis.generator.api.dom.xml.Document;
-import org.mybatis.generator.api.dom.xml.TextElement;
-import org.mybatis.generator.api.dom.xml.XmlElement;
+import org.mybatis.generator.api.dom.xml.*;
+import org.mybatis.generator.config.GeneratedKey;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -105,4 +104,43 @@ public class MapperPlugin extends PluginAdapter {
     }
 
 
+    @Override
+    public boolean sqlMapInsertElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        replaceGeneratedKey(element, introspectedTable);
+        return super.sqlMapInsertElementGenerated(element, introspectedTable);
+    }
+
+    @Override
+    public boolean sqlMapInsertSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        replaceGeneratedKey(element, introspectedTable);
+        return super.sqlMapInsertElementGenerated(element, introspectedTable);
+    }
+
+    /**
+     * 将以下默认的主键返回形式替换为:keyProperty="id" useGeneratedKeys="true"
+     * <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+     * SELECT LAST_INSERT_ID()
+     * </selectKey>
+     *
+     * @param element
+     * @param introspectedTable
+     */
+    private void replaceGeneratedKey(XmlElement element, IntrospectedTable introspectedTable) {
+        GeneratedKey g = introspectedTable.getTableConfiguration().getGeneratedKey();
+        if (g != null) {
+            element.addAttribute(new Attribute("keyProperty", g.getColumn()));
+            element.addAttribute(new Attribute("useGeneratedKeys", "true"));
+            List<Element> els = element.getElements();
+            Iterator<Element> its = els.iterator();
+            while (its.hasNext()) {
+                Element e = its.next();
+                if (e instanceof XmlElement) {
+                    XmlElement xe = (XmlElement) e;
+                    if (xe.getName().equals("selectKey")) {
+                        els.remove(xe);
+                    }
+                }
+            }
+        }
+    }
 }
