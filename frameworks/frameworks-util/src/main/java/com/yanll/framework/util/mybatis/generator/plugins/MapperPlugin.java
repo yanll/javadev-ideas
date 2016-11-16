@@ -137,7 +137,7 @@ public class MapperPlugin extends PluginAdapter {
                 if (e instanceof XmlElement) {
                     XmlElement xe = (XmlElement) e;
                     if (xe.getName().equals("selectKey")) {
-                        els.remove(xe);
+                        its.remove();
                     }
                 }
             }
