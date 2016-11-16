@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>lucenedemo</module>
+        <!--<module>lucenedemo</module>-->
         <module>springbootdemo</module>
         <module>hadoopdemo</module>
         <module>activitidemo</module>
@@ -18,7 +18,6 @@
         <module>docker</module>
         <module>springcloud</module>
         <module>rabbitmqdemo</module>
-        <module>mybatis-generator-demo</module>
     </modules>
 
 
