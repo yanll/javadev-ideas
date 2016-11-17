@@ -15,8 +15,8 @@ import java.lang.reflect.Method;
 /**
  * Created by YAN on 2015/11/11.
  */
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class APIExecuteTimeAdvice {
     private static final Logger logger = LoggerFactory.getLogger(APIExecuteTimeAdvice.class);
 
@@ -37,6 +37,7 @@ public class APIExecuteTimeAdvice {
             result = pjp.proceed();
         } catch (Exception e) {
             logger.error(String.format("Log Method Exec Failed.[%s]", e.getMessage()));
+            throw e;
         }
         clock.stop();
         logger.info(String.format("%s %s ms [%s]", description, clock.getTime(), methodName));

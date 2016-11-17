@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by YANLL on 2016/08/29.
  */
 @RestController
-@RequestMapping(value = "/auth", name = "权限管理模块控制器")
+@RequestMapping(value = "/console/auth", name = "权限管理模块控制器")
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
     @Autowired
