@@ -10,6 +10,7 @@ public enum BizCode {
     METHOD_NOT_ALLOWED(405, "该方法禁止调用，请联系系统管理员！"),
     CONFLICT(409, "操作冲突，请稍后再试！"),
     SESSION_TIMEOUT(410, "用户信息超时，请重新登录！"),
+    LOGIN_FAILD(411, "用户名或密码错误！"),
     INVALID_PARAMETER(450, "参数验证未通过！"),
     PERMISSION_DENIED(452, "权限拒绝，请联系系统管理员！"),
     INTERNAL_SERVER_ERROR(500, "服务器内部异常，请稍后再试！"),

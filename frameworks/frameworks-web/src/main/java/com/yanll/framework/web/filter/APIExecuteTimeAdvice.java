@@ -15,8 +15,8 @@ import java.lang.reflect.Method;
 /**
  * Created by YAN on 2015/11/11.
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class APIExecuteTimeAdvice {
     private static final Logger logger = LoggerFactory.getLogger(APIExecuteTimeAdvice.class);
 
