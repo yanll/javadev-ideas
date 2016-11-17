@@ -25,22 +25,22 @@ public class APIExecuteTimeAdvice {
         StopWatch clock = new StopWatch();
         clock.start();
         Object result = null;
-        String description = null;
-        String methodName = null;
+        StringBuffer description = new StringBuffer();
         try {
+            Class<?> controller = pjp.getTarget().getClass();
             MethodSignature signature = (MethodSignature) pjp.getSignature();
             Method method = signature.getMethod();
-            RequestMapping methodExecTime = method.getAnnotation(RequestMapping.class);
-            description = methodExecTime.name();
-            String className = method.getDeclaringClass().getName();
-            methodName = className + "." + method.getName();
+            RequestMapping controllerAnnotation = controller.getAnnotation(RequestMapping.class);
+            RequestMapping methodAnnotation = method.getAnnotation(RequestMapping.class);
+            description.append(controllerAnnotation.name()).append("-").append(methodAnnotation.name());
+            description.append(" ").append(controller.getName()).append(".").append(method.getName());
             result = pjp.proceed();
         } catch (Exception e) {
             logger.error(String.format("Log Method Exec Failed.[%s]", e.getMessage()));
             throw e;
         }
         clock.stop();
-        logger.info(String.format("%s %s ms [%s]", description, clock.getTime(), methodName));
+        logger.info(String.format("%sms %s", clock.getTime(), description));
         return result;
     }
 
