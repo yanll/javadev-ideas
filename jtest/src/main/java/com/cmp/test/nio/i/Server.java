@@ -1,4 +1,4 @@
-package com.cmp.test.socket.i;
+package com.cmp.test.nio.i;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
