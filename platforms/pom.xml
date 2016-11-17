@@ -18,6 +18,7 @@
     <modules>
         <module>platforms-business</module>
         <module>platforms-api</module>
+        <module>platforms-console</module>
     </modules>
 
 

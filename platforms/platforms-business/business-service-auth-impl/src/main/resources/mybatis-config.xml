@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="com.yanll.business.auth.domain"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="mapper/MenuBeanMapper.xml"/>
+        <mapper resource="mapper/OperationBeanMapper.xml"/>
+        <mapper resource="mapper/RoleBeanMapper.xml"/>
+        <mapper resource="mapper/RoleOperationRelBeanMapper.xml"/>
+        <mapper resource="mapper/UserBeanMapper.xml"/>
+        <mapper resource="mapper/UserOperationRelBeanMapper.xml"/>
+        <mapper resource="mapper/UserRoleRelBeanMapper.xml"/>
+    </mappers>
+</configuration>

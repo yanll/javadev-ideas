@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yanll.platforms</groupId>
-    <artifactId>platforms-business</artifactId>
+    <artifactId>platforms-console</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <parent>
@@ -15,12 +15,7 @@
     </parent>
 
     <modules>
-        <module>business-service-basedata</module>
-        <module>business-service-basedata-impl</module>
-        <module>business-service-indexdata</module>
-        <module>business-service-indexdata-impl</module>
-        <module>business-service-auth</module>
-        <module>business-service-auth-impl</module>
+        <module>console-auth</module>
     </modules>
 
     <dependencies>
@@ -33,6 +28,27 @@
             <groupId>com.yanll.frameworks</groupId>
             <artifactId>frameworks-core</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yanll.frameworks</groupId>
+            <artifactId>frameworks-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
 
