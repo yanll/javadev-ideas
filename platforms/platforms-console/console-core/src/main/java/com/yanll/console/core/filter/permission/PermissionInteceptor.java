@@ -31,7 +31,7 @@ import java.util.Map;
  * 拦截规则：
  * 1、若Controller类注解@Permission(controlled = false)，则该控制器下所有请求放行。
  * 2、若Controller方法注解@Permission(controlled = false)，则该方法对应的请求放行。
- * 3、若Controller类或方法没有配置RequestMapping，说明非Springmvc的URL请求，放行。
+ * 3、除1、2外全部拦截。
  */
 
 public class PermissionInteceptor extends HandlerInterceptorAdapter {
