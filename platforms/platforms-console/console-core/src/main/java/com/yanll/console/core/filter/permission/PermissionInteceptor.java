@@ -1,11 +1,13 @@
 package com.yanll.console.core.filter.permission;
 
 import com.yanll.framework.util.exception.BizCode;
+import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.jackson.UtilJackson;
 import com.yanll.framework.web.annotation.Permission;
 import com.yanll.framework.web.result.JSON;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.autoconfigure.web.BasicErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,6 +49,7 @@ public class PermissionInteceptor extends HandlerInterceptorAdapter {
         //默认静态资源，放行。
         if (handler instanceof DefaultServletHttpRequestHandler) return true;
         HandlerMethod handler_method = (HandlerMethod) handler;
+        if (handler_method.getBean() instanceof BasicErrorController) return true;
         Permission method_permission = handler_method.getMethodAnnotation(Permission.class);
         if (null != method_permission) {
             if (!method_permission.controlled()) return true;//方法标注非受控，放行。
@@ -69,11 +72,12 @@ public class PermissionInteceptor extends HandlerInterceptorAdapter {
         if ("/console/auth/logout".equals(url)) return true;
 
         String login_user = "admin";//登录用户的session信息
-        if (login_user == null) return refuse(response, url);
-        Map<String, String> login_user_permissions = new HashMap<String, String>();//登录用户的权限信息
-        if (login_user_permissions == null) return refuse(response, url);
-        if (login_user_permissions.get(url) == null) return refuse(response, url);
-        return super.preHandle(request, response, handler);
+        if (login_user != null) {
+            Map<String, String> login_user_permissions = new HashMap<String, String>();//登录用户的权限信息
+            if (login_user_permissions != null && login_user_permissions.get(url) != null) return true;
+        }
+        throw new BizException(BizCode.PERMISSION_DENIED.getValue(), BizCode.PERMISSION_DENIED.getDesc());
+        /*return refuse(response, url);*/
     }
 
     @Override

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,9 +31,17 @@ public class AuthController {
         return new JSON(BizCode.OK.getValue(), vo);
     }
 
-    @RequestMapping(value = "/index", name = "首页")
+
+    @RequestMapping(name = "111111", method = RequestMethod.GET)
     @ResponseBody
-    public JSON index() {
+    public JSON a() {
+        return new JSON(BizCode.OK.getValue());
+    }
+
+
+    @RequestMapping(name = "222222", method = RequestMethod.POST)
+    @ResponseBody
+    public JSON b() {
         return new JSON(BizCode.OK.getValue());
     }
 }

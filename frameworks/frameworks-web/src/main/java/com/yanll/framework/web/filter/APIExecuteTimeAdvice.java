@@ -32,7 +32,7 @@ public class APIExecuteTimeAdvice {
             Method method = signature.getMethod();
             RequestMapping controllerAnnotation = controller.getAnnotation(RequestMapping.class);
             RequestMapping methodAnnotation = method.getAnnotation(RequestMapping.class);
-            description.append(controllerAnnotation.name()).append("-").append(methodAnnotation.name());
+            description.append(controllerAnnotation.name()).append("#").append(methodAnnotation.name());
             description.append(" ").append(controller.getName()).append(".").append(method.getName());
             result = pjp.proceed();
         } catch (Exception e) {
