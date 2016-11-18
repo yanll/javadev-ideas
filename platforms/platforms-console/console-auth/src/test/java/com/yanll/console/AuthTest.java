@@ -59,6 +59,7 @@ public class AuthTest {
     @Test
     public void init_url() {
         try {
+            System.out.println("初始化URLMapping...");
             /*RequestMappingHandlerMapping bean = SpringApplicationContextUtil.getBean(RequestMappingHandlerMapping.class);*/
             RequestMappingHandlerMapping bean = (RequestMappingHandlerMapping) wac.getBean(RequestMappingHandlerMapping.class);
             Map<RequestMappingInfo, HandlerMethod> handlerMethods = bean.getHandlerMethods();
