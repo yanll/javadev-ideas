@@ -5,6 +5,7 @@
         <package name="com.yanll.business.auth.domain"/>
     </typeAliases>
     <mappers>
+        <mapper resource="dao/UserBeanMapper.xml"/>
         <mapper resource="mapper/MenuBeanMapper.xml"/>
         <mapper resource="mapper/OperationBeanMapper.xml"/>
         <mapper resource="mapper/RoleBeanMapper.xml"/>

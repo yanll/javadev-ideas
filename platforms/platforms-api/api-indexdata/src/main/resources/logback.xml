@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <property name="pattern" value="[%level] %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %logger{50}:%line - %msg%n"/>
-    <property name="log_file" value="${logfile_path}/${project.artifactId}"/>
+    <property name="log_file" value="/data/log/${project.artifactId}"/>
     <property name="MaxHistory" value="15"/><!--日志保留天数-->
     <property name="MaxFileSize" value="1024MB"/><!--单个文件大小-->
 
