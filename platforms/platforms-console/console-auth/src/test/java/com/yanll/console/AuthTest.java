@@ -72,9 +72,11 @@ public class AuthTest {
                     String method = null;
                     for (String s : patterns) {
                         url = s;
+                        break;
                     }
                     for (RequestMethod m : methods) {
                         method = m.name();
+                        break;
                     }
                     System.out.println(key.getName() + ":[" + url + ":" + method + "]");
                 }

@@ -50,26 +50,18 @@ public class PermissionInteceptor extends HandlerInterceptorAdapter {
         if (handler instanceof DefaultServletHttpRequestHandler) return true;
         HandlerMethod handler_method = (HandlerMethod) handler;
         if (handler_method.getBean() instanceof BasicErrorController) return true;
-        Permission method_permission = handler_method.getMethodAnnotation(Permission.class);
-        if (null != method_permission) {
-            if (!method_permission.controlled()) return true;//方法标注非受控，放行。
-        }
-        Class<?> class_controller = handler_method.getMethod().getDeclaringClass();
+        Class<?> class_controller = handler_method.getBeanType();
         Permission class_permission = class_controller.getAnnotation(Permission.class);
-        if (null != class_permission) {
-            if (!class_permission.controlled()) return true;//控制器标注非受控，放行。
-        }
+        Permission method_permission = handler_method.getMethodAnnotation(Permission.class);
+        if (null != class_permission && !class_permission.controlled()) return true;//控制器标注非受控，放行。
+        if (null != method_permission && !method_permission.controlled()) return true;//方法标注非受控，放行。
+
         RequestMapping class_request_mapping = class_controller.getAnnotation(RequestMapping.class);
-        if (class_request_mapping.value().length > 0) {
-            controller = class_request_mapping.value()[0];
-        }
         RequestMapping method_request_mapping = handler_method.getMethodAnnotation(RequestMapping.class);
-        if (method_request_mapping.value().length > 0) {
-            operation = method_request_mapping.value()[0];
-        }
+        if (class_request_mapping.value().length > 0) controller = class_request_mapping.value()[0];
+        if (method_request_mapping.value().length > 0) operation = method_request_mapping.value()[0];
+        method_request_mapping.method();
         String url = controller + operation;
-        if ("/console/auth/login".equals(url)) return true;
-        if ("/console/auth/logout".equals(url)) return true;
 
         String login_user = "admin";//登录用户的session信息
         if (login_user != null) {
