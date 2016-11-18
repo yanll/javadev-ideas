@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -49,8 +48,8 @@ public class AuthTest {
     public void test() {
         try {
             ResultActions rs = null;
-            rs = mockMvc.perform(post("/console/auth/login").param("username", "admin").param("password", "admin")).andExpect(status().is(200)).andDo(print());
-            rs = mockMvc.perform(get("/console/auth/index")).andExpect(status().is(200)).andDo(print());
+            //rs = mockMvc.perform(post("/console/auth/login").param("username", "admin").param("password", "admin")).andExpect(status().is(200)).andDo(print());
+            rs = mockMvc.perform(get("/console/auth")).andExpect(status().is(200)).andDo(print());
             System.out.println(rs);
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,7 +75,7 @@ public class AuthTest {
                     for (RequestMethod m : methods) {
                         method = m.name();
                     }
-                    System.out.println("[" + url + ":" + method + "]");
+                    System.out.println(key.getName() + ":[" + url + ":" + method + "]");
                 }
             }
         } catch (Exception e) {
