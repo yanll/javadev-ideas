@@ -1,5 +1,9 @@
-package com.yanll.framework.web.filter.permission;
+package com.yanll.console.core.filter.permission;
 
+import com.yanll.framework.util.exception.BizCode;
+import com.yanll.framework.util.jackson.UtilJackson;
+import com.yanll.framework.web.annotation.Permission;
+import com.yanll.framework.web.result.JSON;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +15,8 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by YANLL on 14-2-23.
@@ -33,13 +38,10 @@ public class PermissionInteceptor extends HandlerInterceptorAdapter {
 
     private final Log logger = LogFactory.getLog(PermissionInteceptor.class);
 
-//    @Autowired
-//    IPermissionService permissionService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         /*if (true) return true;*/
-        HttpSession session = request.getSession();
         String controller = "";
         String operation = "";
         //默认静态资源，放行。
@@ -47,66 +49,49 @@ public class PermissionInteceptor extends HandlerInterceptorAdapter {
         HandlerMethod handler_method = (HandlerMethod) handler;
         Permission method_permission = handler_method.getMethodAnnotation(Permission.class);
         if (null != method_permission) {
-            //方法标注非受控，放行。
-            if (!method_permission.controlled()) return true;
+            if (!method_permission.controlled()) return true;//方法标注非受控，放行。
         }
         Class<?> class_controller = handler_method.getMethod().getDeclaringClass();
         Permission class_permission = class_controller.getAnnotation(Permission.class);
         if (null != class_permission) {
-            //控制器标注非受控，放行。
-            if (!class_permission.controlled()) return true;
+            if (!class_permission.controlled()) return true;//控制器标注非受控，放行。
         }
         RequestMapping class_request_mapping = class_controller.getAnnotation(RequestMapping.class);
-        //控制器未定义RequestMapping，放行。
-        if (null == class_request_mapping) return true;
         if (class_request_mapping.value().length > 0) {
             controller = class_request_mapping.value()[0];
         }
         RequestMapping method_request_mapping = handler_method.getMethodAnnotation(RequestMapping.class);
-        //方法未定义RequestMapping，放行。
-        if (null == method_request_mapping) return true;
         if (method_request_mapping.value().length > 0) {
             operation = method_request_mapping.value()[0];
         }
         String url = controller + operation;
-        if ("/account/to_login".equals(url)) return true;
-        String BASE_PATH = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        if ("/console/auth/login".equals(url)) return true;
+        if ("/console/auth/logout".equals(url)) return true;
 
-        Object res = session.getAttribute(PermissionResource.Const.LOGIN_USER);
-        if (res == null) {
-            response.sendRedirect(BASE_PATH + "/account/to_login");
-            return false;
-        }
-//        Map<String, String> user_permissions = (Map<String, String>) session.getAttribute(PermissionResource.Const.USER_PERMISSIONS);
-//        if (user_permissions != null) {
-//            if (user_permissions.get(url) != null) {
-//                //记录操作日志
-//                if (!Strings.isNullOrEmpty(url)) {
-//                    UserBean user = (UserBean) res;
-//                    permissionService.savePv(user, url, UtilHttp.serializeParams(request));
-//                }
-//                return true;
-//            }
-//        }
-//        logger.info("Access refused! target=" + url);
-//        //Ajax请求输出错误信息
-//        String XRequestedWith = request.getHeader("X-Requested-With");
-//        if ("XMLHttpRequest".equals(XRequestedWith)) {
-//            output(response, UtilJackson.toJSON(new JSON(7002)));
-//            return false;
-//        }
-//        response.sendRedirect(BASE_PATH + "/permission/permission_refused?target=" + url);
-        return false;
+        String login_user = "admin";//登录用户的session信息
+        if (login_user == null) return refuse(response, url);
+        Map<String, String> login_user_permissions = new HashMap<String, String>();//登录用户的权限信息
+        if (login_user_permissions == null) return refuse(response, url);
+        if (login_user_permissions.get(url) == null) return refuse(response, url);
+        return super.preHandle(request, response, handler);
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        //记录操作日志
         super.postHandle(request, response, handler, modelAndView);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         super.afterCompletion(request, response, handler, ex);
+    }
+
+
+    private boolean refuse(HttpServletResponse response, String url) throws Exception {
+        logger.info("PERMISSION_DENIED! target=" + url);
+        output(response, UtilJackson.toJSON(new JSON(BizCode.PERMISSION_DENIED.getValue(), BizCode.PERMISSION_DENIED.getDesc())));
+        return false;
     }
 
 

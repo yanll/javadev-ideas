@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by YANLL on 2016/08/29.
  */
 @RestController
-@RequestMapping(value = "/console/auth", name = "权限管理模块控制器")
+@RequestMapping(value = "/console/auth", name = "权限管理")
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
     @Autowired
@@ -28,6 +28,12 @@ public class AuthController {
     public JSON login() {
         UserBeanVO vo = authService.login("admin", "admin");
         return new JSON(BizCode.OK.getValue(), vo);
+    }
+
+    @RequestMapping(value = "/index", name = "首页")
+    @ResponseBody
+    public JSON index() {
+        return new JSON(BizCode.OK.getValue());
     }
 }
 

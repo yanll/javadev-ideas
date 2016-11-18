@@ -1,4 +1,4 @@
-package com.yanll.framework.web.filter.permission;
+package com.yanll.framework.web.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
