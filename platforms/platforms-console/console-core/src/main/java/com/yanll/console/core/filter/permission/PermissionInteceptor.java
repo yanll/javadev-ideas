@@ -17,7 +17,6 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -46,27 +45,36 @@ public class PermissionInteceptor extends HandlerInterceptorAdapter {
         /*if (true) return true;*/
         String controller = "";
         String operation = "";
-        //默认静态资源，放行。
-        if (handler instanceof DefaultServletHttpRequestHandler) return true;
+        String method_type = "";
+
+        if (handler instanceof DefaultServletHttpRequestHandler) return true;//默认静态资源，放行。
+
         HandlerMethod handler_method = (HandlerMethod) handler;
-        if (handler_method.getBean() instanceof BasicErrorController) return true;
+        if (handler_method.getBean() instanceof BasicErrorController) return true;//默认错误页面，放行。
+
         Class<?> class_controller = handler_method.getBeanType();
         Permission class_permission = class_controller.getAnnotation(Permission.class);
         Permission method_permission = handler_method.getMethodAnnotation(Permission.class);
+
         if (null != class_permission && !class_permission.controlled()) return true;//控制器标注非受控，放行。
         if (null != method_permission && !method_permission.controlled()) return true;//方法标注非受控，放行。
 
         RequestMapping class_request_mapping = class_controller.getAnnotation(RequestMapping.class);
         RequestMapping method_request_mapping = handler_method.getMethodAnnotation(RequestMapping.class);
+
         if (class_request_mapping.value().length > 0) controller = class_request_mapping.value()[0];
         if (method_request_mapping.value().length > 0) operation = method_request_mapping.value()[0];
-        method_request_mapping.method();
-        String url = controller + operation;
+        if (method_request_mapping.method().length > 0) method_type = method_request_mapping.method()[0].name();
 
-        String login_user = "admin";//登录用户的session信息
+        String url = controller + operation + ":" + method_type;
+
+        String login_user = (String) request.getSession().getAttribute("user");//登录用户的session信息
         if (login_user != null) {
-            Map<String, String> login_user_permissions = new HashMap<String, String>();//登录用户的权限信息
-            if (login_user_permissions != null && login_user_permissions.get(url) != null) return true;
+            Object p = request.getSession().getAttribute("user_permission");//登录用户的权限信息
+            if (p != null) {
+                Map<String, String> login_user_permissions = (Map<String, String>) p;
+                if (login_user_permissions != null && login_user_permissions.get(url) != null) return true;
+            }
         }
         throw new BizException(BizCode.PERMISSION_DENIED.getValue(), BizCode.PERMISSION_DENIED.getDesc());
         /*return refuse(response, url);*/

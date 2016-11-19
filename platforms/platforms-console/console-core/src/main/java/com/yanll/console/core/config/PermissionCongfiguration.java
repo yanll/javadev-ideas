@@ -9,8 +9,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class LoginSessionCongfiguration extends WebMvcConfigurerAdapter {
-    private final Log logger = LogFactory.getLog(LoginSessionCongfiguration.class);
+public class PermissionCongfiguration extends WebMvcConfigurerAdapter {
+    private final Log logger = LogFactory.getLog(PermissionCongfiguration.class);
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

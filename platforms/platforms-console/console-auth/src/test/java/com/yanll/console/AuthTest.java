@@ -21,10 +21,6 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.util.Map;
 import java.util.Set;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 /**
  * Created by Administrator on 2016/11/18.
  */
@@ -49,7 +45,7 @@ public class AuthTest {
         try {
             ResultActions rs = null;
             //rs = mockMvc.perform(post("/console/auth/login").param("username", "admin").param("password", "admin")).andExpect(status().is(200)).andDo(print());
-            rs = mockMvc.perform(get("/console/auth")).andExpect(status().is(200)).andDo(print());
+            //rs = mockMvc.perform(get("/console/auth")).andExpect(status().is(200)).andDo(print());
             System.out.println(rs);
         } catch (Exception e) {
             e.printStackTrace();
