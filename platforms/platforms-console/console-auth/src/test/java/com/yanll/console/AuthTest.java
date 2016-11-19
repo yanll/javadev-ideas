@@ -6,6 +6,7 @@ import com.yanll.business.auth.service.IAuthService;
 import com.yanll.console.auth.AuthApplication;
 import com.yanll.framework.web.annotation.Permission;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import java.util.Set;
 /**
  * Created by Administrator on 2016/11/18.
  */
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringBootTest(classes = AuthApplication.class)
@@ -90,7 +92,7 @@ public class AuthTest {
                 OperationBean ope = new OperationBean();
                 ope.setUrl(url);
                 ope.setMethod(method);
-                //ope.setDesc("ff访问");
+                ope.setOpeName(key.getName());
                 operationBeanMapper.insertSelective(ope);
             }
         }
