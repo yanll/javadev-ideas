@@ -2,6 +2,7 @@ package com.yanll.console;
 
 import com.yanll.business.auth.service.IAuthService;
 import com.yanll.console.auth.AuthApplication;
+import com.yanll.framework.web.annotation.Permission;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,13 +56,21 @@ public class AuthTest {
     @Test
     public void init_url() {
         try {
-            System.out.println("初始化URLMapping...");
+            System.out.println("****** Init Controlled URLMapping... ******");
             /*RequestMappingHandlerMapping bean = SpringApplicationContextUtil.getBean(RequestMappingHandlerMapping.class);*/
             RequestMappingHandlerMapping bean = (RequestMappingHandlerMapping) wac.getBean(RequestMappingHandlerMapping.class);
             Map<RequestMappingInfo, HandlerMethod> handlerMethods = bean.getHandlerMethods();
             if (handlerMethods != null) {
                 for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethods.entrySet()) {
                     RequestMappingInfo key = entry.getKey();
+                    HandlerMethod value = entry.getValue();
+                    Class controller = value.getBeanType();
+                    if (controller.getName().equals("org.springframework.boot.autoconfigure.web.BasicErrorController"))
+                        continue;
+                    Permission cp = (Permission) controller.getAnnotation(Permission.class);
+                    Permission mp = (Permission) value.getMethodAnnotation(Permission.class);
+                    if (null != cp && !cp.controlled()) continue;
+                    if (null != mp && !mp.controlled()) continue;
                     Set<String> patterns = key.getPatternsCondition().getPatterns();
                     Set<RequestMethod> methods = key.getMethodsCondition().getMethods();
                     String url = null;
