@@ -12,7 +12,7 @@ CREATE TABLE `m_menu` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `parent_id` bigint(20) DEFAULT NULL COMMENT '父级菜单ID',
   `url` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '链接地址',
-  `desc` varchar(64) CHARACTER SET utf8mb4 NOT NULL COMMENT '菜单名称',
+  `menu_name` varchar(64) CHARACTER SET utf8mb4 NOT NULL COMMENT '菜单名称',
   `idx` bigint(20) DEFAULT NULL COMMENT '排序',
   `icon` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '菜单图标',
   PRIMARY KEY (`id`)
@@ -24,8 +24,8 @@ CREATE TABLE `m_operation` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
   `url` varchar(64) CHARACTER SET utf8mb4 NOT NULL COMMENT 'RequestMapping value',
-  `method` varchar(8) CHARACTER SET utf8mb4 NOT NULL COMMENT 'RequestMapping method',
-  `desc` varchar(64) CHARACTER SET utf8mb4 NOT NULL COMMENT '操作描述',
+  `method` varchar(8) CHARACTER SET utf8mb4 NULL COMMENT 'RequestMapping method',
+  `ope_name` varchar(64) CHARACTER SET utf8mb4 NOT NULL COMMENT '操作名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='操作权限表';
 

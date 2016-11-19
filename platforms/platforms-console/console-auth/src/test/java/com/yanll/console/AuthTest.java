@@ -1,5 +1,7 @@
 package com.yanll.console;
 
+import com.yanll.business.auth.dao.OperationBeanMapper;
+import com.yanll.business.auth.domain.OperationBean;
 import com.yanll.business.auth.service.IAuthService;
 import com.yanll.console.auth.AuthApplication;
 import com.yanll.framework.web.annotation.Permission;
@@ -35,6 +37,8 @@ public class AuthTest {
 
     @Autowired
     private IAuthService authService;
+    @Autowired
+    private OperationBeanMapper operationBeanMapper;
 
     @Before
     public void setUp() {
@@ -54,40 +58,41 @@ public class AuthTest {
     }
 
     @Test
-    public void init_url() {
-        try {
-            System.out.println("****** Init Controlled URLMapping... ******");
-            /*RequestMappingHandlerMapping bean = SpringApplicationContextUtil.getBean(RequestMappingHandlerMapping.class);*/
-            RequestMappingHandlerMapping bean = (RequestMappingHandlerMapping) wac.getBean(RequestMappingHandlerMapping.class);
-            Map<RequestMappingInfo, HandlerMethod> handlerMethods = bean.getHandlerMethods();
-            if (handlerMethods != null) {
-                for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethods.entrySet()) {
-                    RequestMappingInfo key = entry.getKey();
-                    HandlerMethod value = entry.getValue();
-                    Class controller = value.getBeanType();
-                    if (controller.getName().equals("org.springframework.boot.autoconfigure.web.BasicErrorController"))
-                        continue;
-                    Permission cp = (Permission) controller.getAnnotation(Permission.class);
-                    Permission mp = (Permission) value.getMethodAnnotation(Permission.class);
-                    if (null != cp && !cp.controlled()) continue;
-                    if (null != mp && !mp.controlled()) continue;
-                    Set<String> patterns = key.getPatternsCondition().getPatterns();
-                    Set<RequestMethod> methods = key.getMethodsCondition().getMethods();
-                    String url = null;
-                    String method = null;
-                    for (String s : patterns) {
-                        url = s;
-                        break;
-                    }
-                    for (RequestMethod m : methods) {
-                        method = m.name();
-                        break;
-                    }
-                    System.out.println(key.getName() + ":[" + url + ":" + method + "]");
+    public void InitControlledURLMapping() {
+        System.out.println("****** Init Controlled URLMapping... ******");
+        /*RequestMappingHandlerMapping bean = SpringApplicationContextUtil.getBean(RequestMappingHandlerMapping.class);*/
+        RequestMappingHandlerMapping bean = (RequestMappingHandlerMapping) wac.getBean(RequestMappingHandlerMapping.class);
+        Map<RequestMappingInfo, HandlerMethod> handlerMethods = bean.getHandlerMethods();
+        if (handlerMethods != null) {
+            for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethods.entrySet()) {
+                RequestMappingInfo key = entry.getKey();
+                HandlerMethod value = entry.getValue();
+                Class controller = value.getBeanType();
+                if (controller.getName().equals("org.springframework.boot.autoconfigure.web.BasicErrorController"))
+                    continue;
+                Permission cp = (Permission) controller.getAnnotation(Permission.class);
+                Permission mp = (Permission) value.getMethodAnnotation(Permission.class);
+                if (null != cp && !cp.controlled()) continue;
+                if (null != mp && !mp.controlled()) continue;
+                Set<String> patterns = key.getPatternsCondition().getPatterns();
+                Set<RequestMethod> methods = key.getMethodsCondition().getMethods();
+                String url = null;
+                String method = null;
+                for (String s : patterns) {
+                    url = s;
+                    break;
                 }
+                for (RequestMethod m : methods) {
+                    method = m.name();
+                    break;
+                }
+                System.out.println(key.getName() + ":[" + url + ":" + method + "]");
+                OperationBean ope = new OperationBean();
+                ope.setUrl(url);
+                ope.setMethod(method);
+                //ope.setDesc("ff访问");
+                operationBeanMapper.insertSelective(ope);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
