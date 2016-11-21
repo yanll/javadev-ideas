@@ -3,10 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <settings>
-        <!-- 输出sql log -->
-        <setting name="logPrefix" value="dao."/>
-    </settings>
     <typeAliases>
         <package name="com.yanll.business.indexdata.domain"/>
     </typeAliases>
