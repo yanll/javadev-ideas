@@ -39,7 +39,7 @@ public class APIExecuteTimeAdvice {
             logger.error(String.format("Log Method Exec Failed.[%s]", e.getMessage()));
         }
         clock.stop();
-        logger.info(String.format("%s 执行时间：%s ms [%s]", description, clock.getTime(), methodName));
+        logger.info(String.format("%s %s ms [%s]", description, clock.getTime(), methodName));
         return result;
     }
 
