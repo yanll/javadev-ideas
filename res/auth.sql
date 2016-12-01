@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS `m_menu`;
 DROP TABLE IF EXISTS `m_operation`;
-DROP TABLE IF EXISTS `m_role`;
-DROP TABLE IF EXISTS `m_role_operation_rel`;
+DROP TABLE IF EXISTS `m_permission_group`;
+DROP TABLE IF EXISTS `m_group_operation_rel`;
 DROP TABLE IF EXISTS `m_user`;
 DROP TABLE IF EXISTS `m_user_operation_rel`;
-DROP TABLE IF EXISTS `m_user_role_rel`;
+DROP TABLE IF EXISTS `m_user_group_rel`;
 
 
 
@@ -27,23 +27,23 @@ CREATE TABLE `m_operation` (
   `method` varchar(8) CHARACTER SET utf8mb4 NULL COMMENT 'RequestMapping method',
   `ope_name` varchar(64) CHARACTER SET utf8mb4 NOT NULL COMMENT '操作名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='操作权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='操作（权限）表';
 
 
 
-CREATE TABLE `m_role` (
+CREATE TABLE `m_permission_group` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_name` varchar(32) CHARACTER SET utf8mb4 NOT NULL COMMENT '角色名',
+  `group_name` varchar(32) CHARACTER SET utf8mb4 NOT NULL COMMENT '权限组名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='权限组表';
 
 
-CREATE TABLE `m_role_operation_rel` (
+CREATE TABLE `m_group_operation_rel` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `group_id` bigint(20) NOT NULL COMMENT '权限组ID',
   `operation_id` bigint(20) NOT NULL COMMENT '操作ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='角色权限映射表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='权限组操作映射表';
 
 CREATE TABLE `m_user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
@@ -59,12 +59,17 @@ CREATE TABLE `m_user_operation_rel` (
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   `operation_id` bigint(20) NOT NULL COMMENT '操作ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户权限映射表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户操作映射表（非必须）';
 
-CREATE TABLE `m_user_role_rel` (
+CREATE TABLE `m_user_group_rel` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `group_id` bigint(20) NOT NULL COMMENT '权限组ID',
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户角色映射表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户权限组映射表';
 
+
+
+
+
+# insert INTO m_menu()
