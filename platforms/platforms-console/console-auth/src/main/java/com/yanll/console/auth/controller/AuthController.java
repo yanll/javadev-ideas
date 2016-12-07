@@ -3,6 +3,7 @@ package com.yanll.console.auth.controller;
 
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.business.auth.service.IAuthService;
+import com.yanll.business.auth.service.IUserService;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.web.annotation.Permission;
 import com.yanll.framework.web.result.JSON;
@@ -29,11 +30,13 @@ public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
     @Autowired
     IAuthService authService;
+    @Autowired
+    IUserService userService;
 
     @RequestMapping(value = "/login", /*method = RequestMethod.GET,*/ name = "用户登录")
     @ResponseBody
     public JSON login(HttpServletRequest request, String username, String password) {
-        UserBeanVO vo = authService.login(username, password);
+        UserBeanVO vo = userService.selectUser(username, password);
         if (vo != null && vo.getId() != null) {
             Map<String, String> map = new HashMap();
             map.put("/console/menu/list:GET", "");

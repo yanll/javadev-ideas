@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> implements BaseService<V> {
 
     private Logger logger = LoggerFactory.getLogger(BaseServiceImpl.class);
@@ -132,7 +135,7 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
      * @param t
      * @return
      */
-    protected V toVO(T t) {
+    public V toVO(T t) {
         if (t == null) {
             return null;
         }
@@ -147,13 +150,33 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
         return v;
     }
 
+    public List<V> toVOList(List<T> list) {
+        List<V> rs = new ArrayList<V>();
+        if (list == null) {
+            return null;
+        }
+        for (T t : list) {
+            if (t == null) continue;
+            V v = getVO();
+            try {
+                BeanUtils.copyProperties(t, v);
+            } catch (BeansException ex) {
+                logger.error("toVO BeansException:", ex);
+            } catch (Exception ex) {
+                logger.error("toVO Exception:", ex);
+            }
+            rs.add(v);
+        }
+        return rs;
+    }
+
     /**
      * VO转DO
      *
      * @param e
      * @return
      */
-    protected T toDO(V e) {
+    public T toDO(V e) {
         if (e == null) {
             return null;
         }
@@ -166,6 +189,26 @@ public abstract class BaseServiceImpl<T extends DataEntity, V extends VOEntity> 
             logger.error("toDO Exception:", ex);
         }
         return t;
+    }
+
+    public List<T> toDOList(List<V> list) {
+        List<T> rs = new ArrayList<T>();
+        if (list == null) {
+            return null;
+        }
+        for (V v : list) {
+            if (v == null) continue;
+            T t = getDataEntity();
+            try {
+                BeanUtils.copyProperties(v, t);
+            } catch (BeansException ex) {
+                logger.error("toDO BeansException:", ex);
+            } catch (Exception ex) {
+                logger.error("toDO Exception:", ex);
+            }
+            rs.add(t);
+        }
+        return rs;
     }
 
     public abstract T getDataEntity();
