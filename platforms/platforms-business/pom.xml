@@ -17,8 +17,6 @@
     <modules>
         <module>business-service-basedata</module>
         <module>business-service-basedata-impl</module>
-        <module>business-service-indexdata</module>
-        <module>business-service-indexdata-impl</module>
         <module>business-service-auth</module>
         <module>business-service-auth-impl</module>
     </modules>
