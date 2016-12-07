@@ -14,10 +14,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <modules>
-        <module>api-indexdata</module>
-    </modules>
-
     <dependencies>
         <dependency>
             <groupId>com.yanll.frameworks</groupId>
