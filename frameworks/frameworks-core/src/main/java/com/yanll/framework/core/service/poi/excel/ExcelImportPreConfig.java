@@ -27,5 +27,5 @@ public interface ExcelImportPreConfig<T extends DataEntity, V extends VOEntity> 
      * @param value
      * @return
      */
-    V buildVO(Object[] value);
+    V buildVO(String[] value);
 }

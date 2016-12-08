@@ -35,7 +35,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
 
     @Override
     public Integer batchInsertFromExcel(List<UserBeanVO> list) throws BizException {
-        return null;
+        List<UserBean> rs = toDOList(list);
+        return userBeanMapper.batchInsert(rs);
     }
 
     @Override

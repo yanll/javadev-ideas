@@ -1,8 +1,6 @@
 package com.yanll.console.auth.controller;
 
 
-import com.yanll.business.auth.domain.UserBeanVO;
-import com.yanll.business.auth.service.IUserService;
 import com.yanll.console.auth.manager.UserManager;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.web.result.JSON;
@@ -14,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 /**
@@ -38,8 +35,12 @@ public class UserController {
     @RequestMapping(value = "/imp", name = "导入用户")
     @ResponseBody
     public JSON imp() {
-        File file = new File("");
-        userManager.imp(file);
+        try {
+            InputStream is = new FileInputStream("D:/u.xlsx");
+            userManager.imp("u.xlsx", is);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return new JSON(BizCode.OK.getValue());
     }
 

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -25,22 +25,24 @@ public class UserManager {
     @Autowired
     ExcelImportPreHandler excelImportPreHandler;
 
-    public void imp(File file) {
+    public void imp(String filename, InputStream is) {
         List<UserBeanVO> pre_list = excelImportPreHandler.setExcelImportPreConfig(new ExcelImportPreConfig() {
             @Override
             public String validation(File file) {
+                if (file == null) return "导入文件为空！";
                 return null;
             }
 
             @Override
-            public UserBeanVO buildVO(Object[] value) {
+            public UserBeanVO buildVO(String[] value) {
                 UserBeanVO vo = new UserBeanVO();
-                vo.setUsername(value[0].toString());
-                vo.setNickname(value[1].toString());
+                vo.setUsername(value[1]);
+                vo.setNickname(value[2]);
+                vo.setPassword(value[0]);
                 return vo;
             }
-        }).handle(file);
-        List<UserBeanVO> list = new ArrayList<UserBeanVO>();
-        Integer i = userService.batchInsertFromExcel(list);
+        }).handle(filename, is);
+        Integer i = userService.batchInsertFromExcel(pre_list);
+        System.out.println(i);
     }
 }

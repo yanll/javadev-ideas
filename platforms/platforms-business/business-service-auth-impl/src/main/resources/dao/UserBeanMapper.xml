@@ -5,4 +5,10 @@
     <select id="selectUser" resultType="UserBean">
         select id, username, nickname from m_user where username = #{username} and password = #{password} and enabled != 0
     </select>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into m_user(username,password,nickname)values
+        <foreach collection="list" item="user" separator=",">
+            (#{user.username},#{user.password},#{user.nickname})
+        </foreach>
+    </insert>
 </mapper>
