@@ -22,19 +22,19 @@ public class ExcelImportHandler<V extends VOEntity> {
 
 
     public List<V> handle(String filename, InputStream is, ExcelImportHandlerCallback excelImportPreConfig) {
-        if (filename == null || filename.length() == 0) throw new RuntimeException("文件名为空，无法执行导入操作");
-        if (is == null) throw new RuntimeException("文件流为空，无法执行导入操作");
-        if (excelImportPreConfig == null) throw new RuntimeException("无预处理参数配置，无法执行导入操作");
+        if (filename == null || filename.length() == 0) throw new RuntimeException("文件名为空，导入操作失败！");
+        if (is == null) throw new RuntimeException("文件流为空，导入操作失败！");
+        if (excelImportPreConfig == null) throw new RuntimeException("无预处理参数配置，导入操作失败！");
         Workbook workBook = null;
         try {
             String file_suffix = ExcelUtil.getExtensionName(filename);
             workBook = ExcelUtil.getWeebWork(is, file_suffix);
         } catch (IOException e) {
-            throw new RuntimeException("读取文件工作簿失败，无法执行导入操作");
+            throw new RuntimeException("读取文件工作簿失败，导入操作失败！");
         }
-        if (workBook == null) throw new RuntimeException("工作簿为空，无法执行导入操作");
+        if (workBook == null) throw new RuntimeException("工作簿为空，导入操作失败！");
         Sheet sheet = workBook.getSheetAt(0);
-        if (sheet == null) throw new RuntimeException("Sheet为空，无法执行导入操作");
+        if (sheet == null) throw new RuntimeException("Sheet为空，导入操作失败！");
         // 获取表格中的数据，按数据行构造VOList对象
         List<V> preExecution = new ArrayList<V>();
         Iterator<Row> it = sheet.rowIterator();
