@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 
 /**
  * Created by yanll on 2016/12/7.
@@ -27,15 +28,16 @@ public class ExcelUtil {
     }
 
     public static String getCellValue(Cell cell) {
-        String value = "";
+        String value = null;
         if (null != cell) {
             // 以下是判断数据的类型
             switch (cell.getCellType()) {
                 case Cell.CELL_TYPE_NUMERIC: // 数字
                     value = cell.getNumericCellValue() + "";
+                    value = BigDecimal.valueOf(Double.parseDouble(value)).stripTrailingZeros().toPlainString();
                     break;
                 case Cell.CELL_TYPE_STRING: // 字符串
-                    value = cell.getStringCellValue();
+                    value = cell.getStringCellValue() + "";
                     break;
                 case Cell.CELL_TYPE_BOOLEAN: // Boolean
                     value = cell.getBooleanCellValue() + "";
@@ -44,13 +46,10 @@ public class ExcelUtil {
                     value = cell.getCellFormula() + "";
                     break;
                 case Cell.CELL_TYPE_BLANK: // 空值
-                    value = "";
                     break;
                 case Cell.CELL_TYPE_ERROR: // 故障
-                    value = "非法字符";
                     break;
                 default:
-                    value = "未知类型";
                     break;
             }
         }

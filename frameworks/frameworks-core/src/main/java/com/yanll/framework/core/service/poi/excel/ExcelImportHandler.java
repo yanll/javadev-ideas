@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -19,25 +18,12 @@ import java.util.List;
  *
  * @param <V>
  */
-public class ExcelImportPreHandler<V extends VOEntity> {
+public class ExcelImportHandler<V extends VOEntity> {
 
 
-    private ExcelImportPreConfig excelImportPreConfig;
-
-    private ExcelImportPreConfig getExcelImportPreConfig() {
-        return excelImportPreConfig;
-    }
-
-    public ExcelImportPreHandler setExcelImportPreConfig(ExcelImportPreConfig excelImportPreConfig) {
-        this.excelImportPreConfig = excelImportPreConfig;
-        return this;
-    }
-
-    public List<V> handle(String filename, InputStream is) {
+    public List<V> handle(String filename, InputStream is, ExcelImportHandlerCallback excelImportPreConfig) {
         if (filename == null || filename.length() == 0) throw new RuntimeException("文件名为空，无法执行导入操作");
         if (is == null) throw new RuntimeException("文件流为空，无法执行导入操作");
-        //获取导入参数配置
-        ExcelImportPreConfig excelImportPreConfig = this.getExcelImportPreConfig();
         if (excelImportPreConfig == null) throw new RuntimeException("无预处理参数配置，无法执行导入操作");
         Workbook workBook = null;
         try {
@@ -46,30 +32,32 @@ public class ExcelImportPreHandler<V extends VOEntity> {
         } catch (IOException e) {
             throw new RuntimeException("读取文件工作簿失败，无法执行导入操作");
         }
-        if (workBook == null || workBook.getSheetAt(0) == null) throw new RuntimeException("读取工作簿Sheet失败，无法执行导入操作");
+        if (workBook == null) throw new RuntimeException("工作簿为空，无法执行导入操作");
         Sheet sheet = workBook.getSheetAt(0);
-        //校验sheet合法性
-        String error = excelImportPreConfig.validation(new File(""));
-        if (null != error && !"".equals(error)) throw new RuntimeException(error);
+        if (sheet == null) throw new RuntimeException("Sheet为空，无法执行导入操作");
         // 获取表格中的数据，按数据行构造VOList对象
         List<V> preExecution = new ArrayList<V>();
         Iterator<Row> it = sheet.rowIterator();
+        int row_index = 0;
+        int cell_count = 0;
         while (it.hasNext()) {
             Row row = it.next();
             //跳过第一行
             if (row.getRowNum() == 0) {
+                row_index++;
+                cell_count = row.getLastCellNum();
                 continue;
             }
-            int cell_count = row.getLastCellNum();
             String[] tmp = new String[cell_count];
-            Iterator<Cell> cell_it = row.cellIterator();
-            int i = 0;
-            while (cell_it.hasNext()) {
-                Cell cell = cell_it.next();
+            for (int i = 0; i < cell_count; i++) {
+                Cell cell = row.getCell(i);
                 String value = ExcelUtil.getCellValue(cell);
-                tmp[i++] = value;
+                if (value == null)
+                    throw new RuntimeException("Excel解析空数据异常。【行索引：" + (row_index + 1) + "，列索引：" + (i + 1) + "】");
+                tmp[i] = value;
             }
-            V v = (V) excelImportPreConfig.buildVO(tmp);
+            V v = (V) excelImportPreConfig.preHandle((row_index), tmp);
+            row_index++;
             preExecution.add(v);
         }
         return preExecution;

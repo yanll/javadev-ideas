@@ -2,14 +2,13 @@ package com.yanll.console.auth.manager;
 
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.business.auth.service.IUserService;
-import com.yanll.framework.core.service.poi.excel.ExcelImportPreConfig;
-import com.yanll.framework.core.service.poi.excel.ExcelImportPreHandler;
+import com.yanll.framework.core.service.poi.excel.ExcelImportHandler;
+import com.yanll.framework.util.jackson.UtilJackson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -23,25 +22,21 @@ public class UserManager {
     IUserService userService;
 
     @Autowired
-    ExcelImportPreHandler excelImportPreHandler;
+    ExcelImportHandler excelImportPreHandler;
 
     public void imp(String filename, InputStream is) {
-        List<UserBeanVO> pre_list = excelImportPreHandler.setExcelImportPreConfig(new ExcelImportPreConfig() {
-            @Override
-            public String validation(File file) {
-                if (file == null) return "导入文件为空！";
-                return null;
+        List<UserBeanVO> pre_list = excelImportPreHandler.handle(filename, is, (error_index, values) -> {
+            UserBeanVO vo = new UserBeanVO();
+            vo.setId(Long.parseLong(values[0]));
+            vo.setUsername(values[1]);
+            vo.setNickname(values[2]);
+            vo.setPassword("pwd");
+            if (vo.getUsername().length() > 6) {
+                throw new RuntimeException("第" + error_index + "行第" + 2 + "列：名称长度不能大于6个字符！");
             }
-
-            @Override
-            public UserBeanVO buildVO(String[] value) {
-                UserBeanVO vo = new UserBeanVO();
-                vo.setUsername(value[1]);
-                vo.setNickname(value[2]);
-                vo.setPassword(value[0]);
-                return vo;
-            }
-        }).handle(filename, is);
+            System.out.println(UtilJackson.toJSON(vo));
+            return vo;
+        });
         Integer i = userService.batchInsertFromExcel(pre_list);
         System.out.println(i);
     }
