@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class POIConfiguration {
     @Bean
-    public ExcelImportHandler excelImportPreHandler() {
+    public ExcelImportHandler excelImportHandler() {
         return new ExcelImportHandler();
     }
 }
