@@ -14,7 +14,7 @@
 
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="root" password="root"
-                        connectionURL="jdbc:mysql://172.21.20.33:3306/auth_center?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
+                        connectionURL="jdbc:mysql://172.21.20.17:3306/auth_center?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
         </jdbcConnection>
 
         <!--Java Bean生成的路径以及package命名空间定义-->
@@ -45,11 +45,11 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_role" domainObjectName="RoleBean" selectByExampleQueryId="false"
+        <table tableName="m_permission_group" domainObjectName="PermissionGroup" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_role_operation_rel" domainObjectName="RoleOperationRelBean" selectByExampleQueryId="false"
+        <table tableName="m_group_operation_rel" domainObjectName="GroupOperationRel" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
@@ -61,7 +61,7 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_user_role_rel" domainObjectName="UserRoleRelBean" selectByExampleQueryId="false"
+        <table tableName="m_user_group_rel" domainObjectName="UserGroupRel" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>

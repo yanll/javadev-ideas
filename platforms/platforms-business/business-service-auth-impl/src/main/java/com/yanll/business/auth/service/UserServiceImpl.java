@@ -4,9 +4,6 @@ import com.yanll.business.auth.dao.UserBeanMapper;
 import com.yanll.business.auth.domain.UserBean;
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.framework.core.service.mysql.BaseServiceImpl;
-import com.yanll.framework.core.service.poi.excel.ExcelImportCallBack;
-import com.yanll.framework.core.service.poi.excel.ExcelImportConfig;
-import com.yanll.framework.core.service.poi.excel.ExcelImportHandler;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.exception.BizException;
@@ -28,9 +25,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
     UserBeanMapper userBeanMapper;
 
 
-    @Autowired
-    ExcelImportHandler excelImportPostHandler;
-
     @Override
     public UserBeanVO selectUser(String username, String password) {
         UserBean userBean = userBeanMapper.selectUser(username, password);
@@ -41,22 +35,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
 
     @Override
     public Integer batchInsertFromExcel(List<UserBeanVO> list) throws BizException {
-        excelImportPostHandler.setImportConfig(new ExcelImportConfig() {
-            @Override
-            public ExcelImportCallBack getExcelImportCallBack() {
-                return new ExcelImportCallBack() {
-                    @Override
-                    public void preOperation(BaseMapper baseMapper, List<Object[]> data) {
-
-                    }
-
-                    @Override
-                    public void postOperation(BaseMapper baseMapper, List<Object[]> data) {
-
-                    }
-                };
-            }
-        }).handle(list);
         return null;
     }
 
