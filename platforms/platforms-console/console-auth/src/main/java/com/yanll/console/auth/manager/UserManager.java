@@ -22,19 +22,23 @@ public class UserManager {
     IUserService userService;
 
     @Autowired
-    ExcelImportHandler excelImportPreHandler;
+    ExcelImportHandler<UserBeanVO> excelImportPreHandler;
 
     public void imp(String filename, InputStream is) {
         List<UserBeanVO> pre_list = excelImportPreHandler.handle(filename, is, (error_index, values) -> {
             UserBeanVO vo = new UserBeanVO();
-            vo.setId(Long.parseLong(values[0]));
-            vo.setUsername(values[1]);
-            vo.setNickname(values[2]);
-            vo.setPassword("pwd");
-            if (vo.getUsername().length() > 6) {
-                throw new RuntimeException("第" + error_index + "行第" + 2 + "列：名称长度不能大于6个字符！");
+            try {
+                vo.setId(Long.parseLong(values[0]));
+                vo.setUsername(values[1]);
+                vo.setNickname(values[2]);
+                vo.setPassword("pwd");
+                if (vo.getUsername().length() > 6) {
+                    throw new RuntimeException("第" + error_index + "行第" + 2 + "列：名称长度不能大于6个字符！");
+                }
+                System.out.println(UtilJackson.toJSON(vo));
+            } catch (Exception e) {
+                throw new RuntimeException("第" + error_index + "行解析出错！");
             }
-            System.out.println(UtilJackson.toJSON(vo));
             return vo;
         });
         Integer i = userService.batchInsertFromExcel(pre_list);
