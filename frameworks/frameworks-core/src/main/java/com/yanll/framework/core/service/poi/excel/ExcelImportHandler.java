@@ -1,6 +1,7 @@
 package com.yanll.framework.core.service.poi.excel;
 
 import com.yanll.framework.data.mysql.domain.VOEntity;
+import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.poi.excel.ExcelUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,19 +23,19 @@ public class ExcelImportHandler<V extends VOEntity> {
 
 
     public List<V> handle(String filename, InputStream is, ExcelImportHandlerCallback excelImportPreConfig) {
-        if (filename == null || filename.length() == 0) throw new RuntimeException("文件名为空，导入操作失败！");
-        if (is == null) throw new RuntimeException("文件流为空，导入操作失败！");
-        if (excelImportPreConfig == null) throw new RuntimeException("无预处理参数配置，导入操作失败！");
+        if (filename == null || filename.length() == 0) throw new BizException("文件名为空，导入操作失败！");
+        if (is == null) throw new BizException("文件流为空，导入操作失败！");
+        if (excelImportPreConfig == null) throw new BizException("无预处理参数配置，导入操作失败！");
         Workbook workBook = null;
         try {
             String file_suffix = ExcelUtil.getExtensionName(filename);
             workBook = ExcelUtil.getWeebWork(is, file_suffix);
         } catch (IOException e) {
-            throw new RuntimeException("读取文件工作簿失败，导入操作失败！");
+            throw new BizException("读取文件工作簿失败，导入操作失败！");
         }
-        if (workBook == null) throw new RuntimeException("工作簿为空，导入操作失败！");
+        if (workBook == null) throw new BizException("工作簿为空，导入操作失败！");
         Sheet sheet = workBook.getSheetAt(0);
-        if (sheet == null) throw new RuntimeException("Sheet为空，导入操作失败！");
+        if (sheet == null) throw new BizException("Sheet为空，导入操作失败！");
         // 获取表格中的数据，按数据行构造VOList对象
         List<V> preExecution = new ArrayList<V>();
         Iterator<Row> it = sheet.rowIterator();
@@ -53,7 +54,7 @@ public class ExcelImportHandler<V extends VOEntity> {
                 Cell cell = row.getCell(i);
                 String value = ExcelUtil.getCellValue(cell);
                 if (value == null)
-                    throw new RuntimeException("Excel解析空数据异常。【行索引：" + (row_index + 1) + "，列索引：" + (i + 1) + "】");
+                    throw new BizException("Excel解析空数据异常。【行索引：" + (row_index + 1) + "，列索引：" + (i + 1) + "】");
                 tmp[i] = value;
             }
             V v = (V) excelImportPreConfig.preHandle((row_index), tmp);
