@@ -14,6 +14,10 @@ import java.math.BigDecimal;
  */
 public class ExcelUtil {
 
+
+    public static final String[] excel_suffixes = new String[]{"xls", "xlsx"};
+
+
     public static Workbook getWeebWork(InputStream is, String file_suffix) throws IOException {
         Workbook workbook = null;
         if (null != is) {
@@ -60,9 +64,19 @@ public class ExcelUtil {
         if (filename != null && filename.length() > 0) {
             int dot = filename.lastIndexOf('.');
             if (dot > -1 && dot < (filename.length() - 1)) {
-                return filename.substring(dot + 1);
+                return filename.substring(dot + 1).toLowerCase();
             }
         }
         return null;
+    }
+
+    public static boolean isExcel(String file_suffix) {
+        if (file_suffix == null) return false;
+        for (String s : excel_suffixes) {
+            if (file_suffix.equals(s)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -36,7 +36,11 @@ public class GlobalExceptionHandler {
         JSON result = new JSON();
         result.setCode(BizCode.INTERNAL_SERVER_ERROR.getValue());
         result.setDesc(BizCode.INTERNAL_SERVER_ERROR.getDesc());
-        logger.error(runtimeException.getMessage(), runtimeException);
+        String runtime_err = BizCode.INTERNAL_SERVER_ERROR.getDesc();
+        if (runtimeException.getMessage() != null && runtimeException.getMessage().length() > 0) {
+            runtime_err = runtimeException.getMessage();
+        }
+        logger.error(BizCode.INTERNAL_SERVER_ERROR.getDesc() + " >> " + runtime_err, runtimeException);
         return result;
     }
 

@@ -4,6 +4,7 @@ public enum BizCode {
 
     OK(200, "成功！"),
     CREATED(201, "已经创建！"),
+    DEFAULT_BIZ_ERROR(202, "业务异常！（此处应该被具体业务代码重写）"),
     BAD_REQUEST(400, "请求失效，请稍后再试！"),
     UNAUTHORIZED(401, "未经授权的操作，请联系系统管理员！"),
     NOT_FOUND(404, "未找到资源，请稍后再试！"),
