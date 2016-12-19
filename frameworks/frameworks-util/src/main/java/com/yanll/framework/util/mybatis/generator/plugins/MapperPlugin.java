@@ -86,8 +86,16 @@ public class MapperPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
         XmlElement parentElement = document.getRootElement();
-        //生成Cache
-        /*parentElement.addElement(0, new TextElement("<cache type=\"org.mybatis.caches.ehcache.EhcacheCache\"/>"));*/
+        List<Attribute> list = parentElement.getAttributes();
+        String namespace = null;
+        for (Attribute attribute : list) {
+            if (attribute.getName().equals("namespace")) {
+                namespace = attribute.getValue();
+                break;
+            }
+        }
+        //生成二级缓Cache
+        parentElement.addElement(0, new TextElement("<cache-ref namespace=\"" + namespace + "\"/>"));
         parentElement.addElement(0, new TextElement("<!--" + PluginUtil.WARN + "-->"));
         //增加deleteByIds接口的sql元素
         String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名

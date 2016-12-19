@@ -1,6 +1,7 @@
 package com.yanll.console.auth.controller;
 
 
+import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.console.auth.manager.UserManager;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.web.result.JSON;
@@ -29,10 +30,11 @@ public class UserController {
     @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询用户列表")
     @ResponseBody
     public JSON list() {
-        return new JSON(BizCode.OK.getValue());
+        return new JSON(BizCode.OK.getValue(), userManager.getUsers(""));
     }
 
-    @RequestMapping(value = "/imp", name = "导入用户")
+
+    @RequestMapping(value = "/imp", method = RequestMethod.POST, name = "导入用户")
     @ResponseBody
     public JSON imp() {
         try {
@@ -41,6 +43,16 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return new JSON(BizCode.OK.getValue());
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST, name = "保存用户")
+    @ResponseBody
+    public JSON save(String nickname) {
+        UserBeanVO user = new UserBeanVO();
+        user.setId(10000L);
+        user.setNickname(nickname);
+        userManager.save(user);
         return new JSON(BizCode.OK.getValue());
     }
 

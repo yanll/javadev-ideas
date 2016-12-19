@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yanll.business.auth.dao.MenuBeanMapper">
   <!--当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）-->
+  <cache-ref namespace="com.yanll.business.auth.dao.MenuBeanMapper"/>
   <resultMap id="BaseResultMap" type="com.yanll.business.auth.domain.MenuBean">
     <!--
       WARNING - @mbg.generated

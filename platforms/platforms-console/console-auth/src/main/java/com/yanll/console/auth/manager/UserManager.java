@@ -41,4 +41,19 @@ public class UserManager {
         Integer i = userService.batchInsertFromExcel(pre_list);
         System.out.println(i);
     }
+
+    public void save(UserBeanVO user) {
+        if (user == null) throw new BizException("用户对象空！");
+        if (user.getId() != null && user.getId() > 0) userService.updateByPrimaryKeySelective(user);
+        else userService.insertSelective(user);
+
+    }
+
+    public UserBeanVO getUser(Long user_id) {
+        return userService.selectByPrimaryKey(user_id);
+    }
+
+    public List<UserBeanVO> getUsers(String username) {
+        return userService.selectUsers(username);
+    }
 }

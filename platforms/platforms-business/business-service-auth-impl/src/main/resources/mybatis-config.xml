@@ -5,13 +5,15 @@
         <package name="com.yanll.business.auth.domain"/>
     </typeAliases>
     <mappers>
+        <mapper resource="dao/MenuBeanMapper.xml"/>
         <mapper resource="dao/UserBeanMapper.xml"/>
-        <mapper resource="mapper/GroupOperationRelMapper.xml"/>
+        <mapper resource="dao/OperationBeanMapper.xml"/>
         <mapper resource="mapper/MenuBeanMapper.xml"/>
-        <mapper resource="mapper/OperationBeanMapper.xml"/>
-        <mapper resource="mapper/PermissionGroupMapper.xml"/>
         <mapper resource="mapper/UserBeanMapper.xml"/>
-        <mapper resource="mapper/UserGroupRelMapper.xml"/>
-        <mapper resource="mapper/UserOperationRelBeanMapper.xml"/>
+        <mapper resource="mapper/OperationBeanMapper.xml"/>
+        <!--<mapper resource="mapper/GroupOperationRelMapper.xml"/>-->
+        <!--<mapper resource="mapper/PermissionGroupMapper.xml"/>-->
+        <!--<mapper resource="mapper/UserGroupRelMapper.xml"/>-->
+        <!--<mapper resource="mapper/UserOperationRelBeanMapper.xml"/>-->
     </mappers>
 </configuration>

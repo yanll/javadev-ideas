@@ -34,6 +34,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
     }
 
     @Override
+    public List<UserBeanVO> selectUsers(String username) throws BizException {
+        return toVOList(userBeanMapper.selectUsers(username));
+    }
+
+    @Override
     public Integer batchInsertFromExcel(List<UserBeanVO> list) throws BizException {
         List<UserBean> rs = toDOList(list);
         return userBeanMapper.batchInsert(rs);

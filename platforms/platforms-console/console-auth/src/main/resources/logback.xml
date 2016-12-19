@@ -47,7 +47,7 @@
         </filter>
     </appender>
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="stdout"/>
         <appender-ref ref="info"/>
         <appender-ref ref="error"/>

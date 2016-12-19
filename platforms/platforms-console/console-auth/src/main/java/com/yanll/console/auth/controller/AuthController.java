@@ -33,7 +33,7 @@ public class AuthController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "/login", /*method = RequestMethod.GET,*/ name = "用户登录")
+    @RequestMapping(value = "/login", method = RequestMethod.POST, name = "用户登录")
     @ResponseBody
     public JSON login(HttpServletRequest request, String username, String password) {
         UserBeanVO vo = userService.selectUser(username, password);
