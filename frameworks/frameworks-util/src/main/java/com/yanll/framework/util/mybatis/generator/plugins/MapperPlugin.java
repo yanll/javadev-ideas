@@ -94,7 +94,7 @@ public class MapperPlugin extends PluginAdapter {
                 break;
             }
         }
-        //生成二级缓Cache
+        //生成二级缓存Cache
         parentElement.addElement(0, new TextElement("<cache-ref namespace=\"" + namespace + "\"/>"));
         parentElement.addElement(0, new TextElement("<!--" + PluginUtil.WARN + "-->"));
         //增加deleteByIds接口的sql元素
