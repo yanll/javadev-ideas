@@ -17,7 +17,6 @@
 
 
     <modules>
-        <module>frameworks</module>
         <module>platforms</module>
         <module>jtest</module>
         <module>study</module>
