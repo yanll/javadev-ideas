@@ -10,15 +10,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>springbootdemo</module>
         <module>hadoopdemo</module>
-        <module>dubbo</module>
         <module>docker</module>
-        <module>springcloud</module>
         <module>rabbitmqdemo</module>
         <module>nettydemo</module>
-        <!--<module>lucenedemo</module>-->
-        <!--<module>activitidemo</module>-->
     </modules>
 
 
