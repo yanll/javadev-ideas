@@ -17,9 +17,7 @@
 
 
     <modules>
-        <module>platforms</module>
         <module>jtest</module>
-        <module>study</module>
         <!--<module>jcrawler</module>-->
         <!--<module>jweb</module>-->
     </modules>
