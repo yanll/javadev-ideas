@@ -5,16 +5,16 @@ package com.cmp.test.designpattern.listener;
  */
 public class Test {
 
-    DemoSource ds;
+    Source ds;
 
     public Test() {
         try {
-            ds = new DemoSource();
+            ds = new Source();
             //将监听器在事件源对象中登记
-            DemoListener listener = new DemoListenerImpl();
+            IListener listener = new ListenerImpl();
             ds.addDemoListener(listener);
-            ds.addDemoListener(new DemoListener() {
-                public void handleEvent(DemoEvent event) {
+            ds.addDemoListener(new IListener() {
+                public void handleEvent(Event event) {
                     System.out.println("Method come from 匿名类...");
                 }
             });
