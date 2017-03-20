@@ -1,59 +1,6 @@
-# Java项目大集合，包含N个子项目和功能组件。
+# Java测试代码
 
-    个人开发中一些想法的实践，陆续完善中，涉及Java服务端、前端、权限控制、分布式、缓存、消息队列、数据库等。
-
-    项目依赖关系总体原则：自上而下，每个项目也可以独立为一个组件或服务运行。
-
-    联系方式：516830377#qq.com
-
-# 模块简介
-
-dependencies-bom：所有项目的依赖管理定义
-
-frameworks：开发框架集合
-
-jcrawler：基于WebCollect的一个爬虫项目
-
-jtest：SDK、API等测试代码
-
-jweb：非分布式Web项目，含前端
-
-platforms：分布式项目
-
-    1.服务提供层
-
-    2.api应用层
-
-    3.console后台管理系统层
-
-        3.1 console-auth权限控制中心
-
-res：资源文件
-
-study：学习项目
-
-    1.actividemo：工作流
-
-    2.docker：docker学习
-
-    3.dubbo：dubbo学习项目
-
-        3.1 api层
-
-        3.2 服务提供层
-
-        3.3 发布层
-
-    4.lucenedemo：lucene学习
-
-    5.nettydemo：netty学习
-
-    6.rabbitmqdemo
-
-    7.springbootdemo
-
-    8.spingcloud
-
+    
 
 
 
