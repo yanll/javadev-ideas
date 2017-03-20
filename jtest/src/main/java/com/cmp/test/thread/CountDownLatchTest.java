@@ -9,11 +9,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Component("BackupRankDay0106Job")
+
 public class CountDownLatchTest implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(CountDownLatchTest.class);
-    private static final int THREDS_SIZE = 20;
-    private static ExecutorService threadPool = Executors.newFixedThreadPool(THREDS_SIZE / 4);
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
 
     private CountDownLatch latch;
@@ -29,17 +28,18 @@ public class CountDownLatchTest implements Runnable {
      * 创建10个线程执行移库操作
      */
     public void moveRankViewDataJob() {
-        final CountDownLatch countDownLatch = new CountDownLatch(THREDS_SIZE);
-        for (int i = 0; i < THREDS_SIZE; i++) {
+        final CountDownLatch countDownLatch = new CountDownLatch(20);
+        for (int i = 0; i < 20; i++) {
             threadPool.submit(new CountDownLatchTest(countDownLatch));
         }
-        logger.info("开始执行多线程移库操作");
+        logger.info("开始执行多线程移库");
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         threadPool.shutdown();
+        logger.info("多线程移库执行结束");
     }
 
 
