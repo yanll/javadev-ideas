@@ -17,6 +17,6 @@
 
 
     <modules>
-        <!--<module>jtest</module>-->
+        <module>jtest</module>
     </modules>
 </project>
