@@ -17,15 +17,6 @@ public class RunnableTask implements Runnable {
         this.num = num;
     }
 
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-
     private void test() {
         int num = 0;
         for (int i = 0; i < 10; i++) {

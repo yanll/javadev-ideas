@@ -12,7 +12,7 @@ public class VolatileTest {
 
     public static void main(String[] args) {
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(ThreadConst.THREAD_POOL_SIZE);
-        Task task = new Task(new LongAdder(), 0);
+        Volatile task = new Volatile(new LongAdder(), 0);
         for (int i = 0; i < 1000; i++) {
             if (i == 50) task.stop();
             fixedThreadPool.submit(task);
@@ -21,12 +21,12 @@ public class VolatileTest {
 
 }
 
-class Task implements Runnable {
+class Volatile implements Runnable {
     private LongAdder la = new LongAdder();
     private int i;
     private boolean stop;
 
-    public Task(LongAdder la, int i) {
+    public Volatile(LongAdder la, int i) {
         this.la = la;
         this.i = i;
     }

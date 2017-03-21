@@ -2,7 +2,6 @@ package com.cmp.test.thread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -10,29 +9,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class CountDownLatchTest implements Runnable {
+public class CountDownLatchTest {
+
     private static final Logger logger = LoggerFactory.getLogger(CountDownLatchTest.class);
     private static ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
-
-    private CountDownLatch latch;
-
-    public CountDownLatchTest() {
-    }
-
-    public CountDownLatchTest(CountDownLatch latch) {
-        this.latch = latch;
-    }
-
-    /**
-     * 创建10个线程执行移库操作
-     */
-    public void moveRankViewDataJob() {
+    public static void main(String[] args) {
         final CountDownLatch countDownLatch = new CountDownLatch(20);
-        for (int i = 0; i < 20; i++) {
-            threadPool.submit(new CountDownLatchTest(countDownLatch));
-        }
+        CountDownLatchTask task = new CountDownLatchTask(countDownLatch);
         logger.info("开始执行多线程移库");
+        for (int i = 0; i < 20; i++) {
+            threadPool.submit(task);
+        }
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -42,6 +30,18 @@ public class CountDownLatchTest implements Runnable {
         logger.info("多线程移库执行结束");
     }
 
+
+}
+
+
+class CountDownLatchTask implements Runnable {
+
+    private static final Logger logger = LoggerFactory.getLogger(CountDownLatchTask.class);
+    private CountDownLatch latch;
+
+    public CountDownLatchTask(CountDownLatch latch) {
+        this.latch = latch;
+    }
 
     @Override
     public void run() {
@@ -57,12 +57,5 @@ public class CountDownLatchTest implements Runnable {
             latch.countDown();
         }
     }
-
-
-    public static void main(String[] args) {
-        new CountDownLatchTest().moveRankViewDataJob();
-    }
-
-
 }
 
