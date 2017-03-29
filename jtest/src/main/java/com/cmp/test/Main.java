@@ -4,8 +4,6 @@ package com.cmp.test;
  * Created by Administrator on 2016/12/30.
  */
 public class Main {
-
-
     private void change(String s, Integer n, U u) {
         System.out.println(u);
         s = "admin";

@@ -13,7 +13,8 @@ public class QuicksortTest {
         //quicksort.sortI();
         //System.out.println("斐波那契数列：" + quicksort.sortII(15));
         //System.out.println("阶乘：" + quicksort.sortIII(6));
-        quicksort.sortIIII();
+        //quicksort.sortIIII();
+        quicksort.cal();
     }
 
     private void sortI() {
@@ -58,6 +59,7 @@ public class QuicksortTest {
         }
     }
 
+
     private int[] initArr() {
         int[] arr = new int[len];
         Random random = new Random();
@@ -70,4 +72,12 @@ public class QuicksortTest {
         return arr;
     }
 
+    private void cal() {
+        int num = 2899;
+        System.out.println("二进制：" + Integer.toBinaryString(num));
+        num = num >> -1;
+        System.out.println("二进制：" + Integer.toBinaryString(num));
+        System.out.println("二进制：" + Integer.toBinaryString(15));
+        System.out.println(num);
+    }
 }
