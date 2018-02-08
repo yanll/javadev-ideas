@@ -1,5 +1,7 @@
 package com.cmp.test.thread;
 
+import com.cmp.test.thread.task.ThreadConst;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.LongAdder;

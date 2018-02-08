@@ -1,6 +1,5 @@
 package com.cmp.test.thread.pool;
 
-import com.cmp.test.thread.ThreadConst;
 import com.cmp.test.thread.task.RunnableTask;
 
 import java.util.concurrent.ExecutorService;
