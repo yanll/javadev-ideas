@@ -18,7 +18,7 @@ import java.util.concurrent.Future;
 public class FutureCallableTaskTest {
 
 
-    //todo-yll-fixme FutureTask
+    //todo-yll-fixme FutureTask RunnableFuture
     private static final Logger logger = LoggerFactory.getLogger(CallableTaskTest.class);
     private static final ExecutorService executor = Executors.newFixedThreadPool(ThreadConst.THREAD_POOL_SIZE);
 
